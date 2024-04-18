@@ -1,4 +1,4 @@
-# OpenWeather Book
+# ![logo](src/openweather/data/icon.svg) OpenWeather Book
 
 OpenWeather book enables users to fetch real-time temperature data for any city worldwide via the OpenWeather API. 
 
