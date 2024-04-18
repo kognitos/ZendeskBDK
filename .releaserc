@@ -16,5 +16,5 @@ plugins:
         dockerRegistry: '719468614044.dkr.ecr.us-west-2.amazonaws.com'
         dockerProject: 'kognitos'
         dockerBuildQuiet: false
-        dockerBuildArgs:
+        dockerArgs:
             CODE_ARTIFACT_TOKEN: '${{ env.CODE_ARTIFACT_TOKEN }}'
