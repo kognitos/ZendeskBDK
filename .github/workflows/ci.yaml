@@ -49,6 +49,11 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
+    - name: Login to AWS CodeArtifact
+      id: codeartifact
+      run: |
+        TOKEN=$(aws codeartifact get-authorization-token --domain-owner 719468614044 --domain kognitos --query 'authorizationToken' --output text)
+        echo "::set-output name=token::$TOKEN"
     - name: Semantic Release
       id: semantic
       uses: cycjimmy/semantic-release-action@v4
@@ -59,6 +64,7 @@ jobs:
           @codedependant/semantic-release-docker
           @semantic-release/exec
       env:
+        CODE_ARTIFACT_TOKEN: ${{ steps.codeartifact.outputs.token }}
         DOCKER_REGISTRY_USER: ${{ steps.login-ecr.outputs.docker_username_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
         DOCKER_REGISTRY_PASSWORD: ${{ steps.login-ecr.outputs.docker_password_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
