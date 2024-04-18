@@ -5,6 +5,10 @@ plugins:
     - "@semantic-release/release-notes-generator"
     - "@semantic-release/github"
     - "@semantic-release/changelog"
+    - - "@semantic-release/exec"
+      - prepareCmd: |
+          export CODEARTIFACT_TOKEN=$(aws codeartifact get-authorization-token --domain-owner 719468614044 --domain kognitos --query 'authorizationToken' --output text);
+          echo "CODEARTIFACT_TOKEN=${CODEARTIFACT_TOKEN}" > .env
     - - "@codedependant/semantic-release-docker"
       - dockerTags:
           - 'latest'
@@ -16,3 +20,5 @@ plugins:
         dockerRegistry: '719468614044.dkr.ecr.us-west-2.amazonaws.com'
         dockerProject: 'kognitos'
         dockerBuildQuiet: false
+        dockerBuildArgs:
+            CODE_ARTIFACT_TOKEN: '${{ env.CODE_ARTIFACT_TOKEN }}'
