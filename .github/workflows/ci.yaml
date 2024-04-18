@@ -62,7 +62,6 @@ jobs:
           main
         extra_plugins: |
           @codedependant/semantic-release-docker
-          @semantic-release/exec
       env:
         CODE_ARTIFACT_TOKEN: ${{ steps.codeartifact.outputs.token }}
         DOCKER_REGISTRY_USER: ${{ steps.login-ecr.outputs.docker_username_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
