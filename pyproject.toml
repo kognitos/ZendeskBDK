@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "book-openweather"
+version = "0.1.0"
+description = "OpenWeather book enables users to fetch real-time temperature data for any city worldwide via the OpenWeather API."
+authors = ["Emiliano Lesende <emiliano.lesende@gmail.com>"]
+readme = "README.md"
+packages = [{include = "openweather", from="src"}]
+
+[[tool.poetry.source]]
+name = "bdk"
+url = "https://kognitos-719468614044.d.codeartifact.us-west-2.amazonaws.com/pypi/bdk/simple/"
+priority = "explicit"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+pylint = "^3.0.3"
+requests = "^2.31.0"
+kognitos-bdk-api = {version = "^0.7", source = "bdk"}
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+mypy = "^1.8.0"
+isort = "^5.13.2"
+black = "^24.2.0"
+requests-mock = "^1.11.0"
+
+[tool.poetry.scripts]
+tests = "poetry_scripts:run_tests"
+format = "poetry_scripts:run_format"
+lint = "poetry_scripts:run_lint"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+include = ["data/*"]
+
+[tool.pylint.MAIN]
+py-version = "3.11"
+load-plugins = ["kognitos.bdk.linter"]
+
+[tool.pylint.messages_control]
+disable = [
+    "line-too-long",
+    "redefined-outer-name"
+]
+
+[tool.poetry.plugins."kognitos-book"]
+openweather = "openweather.book:OpenWeatherBook"

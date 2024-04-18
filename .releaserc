@@ -1,0 +1,18 @@
+branches:
+    - "master"
+plugins:
+    - "@semantic-release/commit-analyzer"
+    - "@semantic-release/release-notes-generator"
+    - "@semantic-release/github"
+    - "@semantic-release/changelog"
+    - - "@codedependant/semantic-release-docker"
+      - dockerTags:
+          - 'latest'
+          - '{{version}}'
+          - '{{major}}-latest'
+          - '{{major}}.{{minor}}'
+        dockerImage: 'book-openweather'
+        dockerFile: 'Dockerfile'
+        dockerRegistry: '719468614044.dkr.ecr.us-west-2.amazonaws.com'
+        dockerProject: 'kognitos'
+        dockerBuildQuiet: false

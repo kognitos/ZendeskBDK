@@ -1,0 +1,60 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  Publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.11
+    - name: Install Python Poetry
+      uses: abatilo/actions-poetry@v2
+      with:
+        poetry-version: 1.8
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
+        role-skip-session-tagging: true
+    - name: Configure Poetry
+      shell: bash
+      run: |
+        python -m poetry config virtualenvs.in-project true
+        python -m poetry config virtualenvs.create true
+        python -m poetry config http-basic.bdk aws $(aws codeartifact get-authorization-token --domain-owner 719468614044 --domain kognitos --query 'authorizationToken' --output text)
+    - name: View poetry version
+      run: poetry --version
+    - name: Install dependencies
+      run: |
+        python -m poetry install
+    - name: Test
+      run: |
+        python -m poetry run tests
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+    - name: Semantic Release
+      id: semantic
+      uses: cycjimmy/semantic-release-action@v4
+      with:
+        branches: |
+          main
+        extra_plugins: |
+          @codedependant/semantic-release-docker
+      env:
+        DOCKER_REGISTRY_USER: ${{ steps.login-ecr.outputs.docker_username_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
+        DOCKER_REGISTRY_PASSWORD: ${{ steps.login-ecr.outputs.docker_password_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
