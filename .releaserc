@@ -17,4 +17,4 @@ plugins:
         dockerProject: 'kognitos'
         dockerBuildQuiet: false
         dockerArgs:
-            CODE_ARTIFACT_TOKEN: '${{ env.CODE_ARTIFACT_TOKEN }}'
+            CODE_ARTIFACT_TOKEN: '{{ env.CODE_ARTIFACT_TOKEN }}'
