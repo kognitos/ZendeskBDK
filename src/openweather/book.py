@@ -6,7 +6,7 @@ from typing import Optional
 from urllib.parse import quote
 
 import requests
-from kognitos.bdk import autoconvert, procedure, book
+from kognitos.bdk import autoconvert, procedure, book, connect
 from kognitos.bdk.concept import NounPhrase
 
 OPENWEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -64,12 +64,16 @@ class OpenWeatherBook:
             raise ValueError("timeout must be positive")
         self._timeout = timeout
 
+    @connect
     def connect(self, api_key: str):
         """
         Connects to an API using the provided API key.
 
-        :param api_key: The API key to use for authentication.
-        :type api_key: str
+        Arguments:
+            api_key: The API key to be used for connecting
+
+        Labels:
+            api_key: API Key
         """
         test_url = f"{self._base_url}?appid={api_key}&q=London"
         response = requests.get(test_url, timeout=self._timeout)
