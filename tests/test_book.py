@@ -1,6 +1,7 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring
 import pytest
 import requests_mock
+from kognitos.bdk.concept import NounPhrase
 
 from openweather import OPENWEATHER_BASE_URL, OpenWeatherBook
 
@@ -44,7 +45,7 @@ def test_current_temperature(openweather_book):
             json={"cod": 200, "main": {"temp": 20.0}},
         )
         openweather_book.connect(API_KEY)
-        temperature = openweather_book.current_temperature("New York")
+        temperature = openweather_book.current_temperature(NounPhrase("New York", []))
         assert temperature == 20.0, "The temperature should be 20.0°C"
 
 
@@ -60,5 +61,7 @@ def test_get_current_temperature_error_response(openweather_book):
             status_code=404,
         )
         openweather_book.connect(API_KEY)
-        temperature = openweather_book.current_temperature("NonExistentCity")
+        temperature = openweather_book.current_temperature(
+            NounPhrase("NonExistentCity", [])
+        )
         assert temperature is None

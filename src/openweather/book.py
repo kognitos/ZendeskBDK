@@ -6,7 +6,7 @@ from typing import Optional
 from urllib.parse import quote
 
 import requests
-from kognitos.bdk import autoconvert, procedure, book, connect
+from kognitos.bdk import procedure, book, connect
 from kognitos.bdk.concept import NounPhrase
 
 OPENWEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -84,7 +84,6 @@ class OpenWeatherBook:
 
         self._api_key = api_key
 
-    @autoconvert
     @procedure("to get the current temperature at a city")
     def current_temperature(self, city: NounPhrase) -> Optional[float]:
         """Fetch the current temperature for a specified city.
