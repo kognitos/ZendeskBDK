@@ -43,12 +43,15 @@ jobs:
     - name: Install dependencies
       run: |
         python -m poetry install
-    - name: Test
-      run: |
-        python -m poetry run tests
     - name: Lint
       run: |
         python -m poetry run lint
+    - name: Type Check
+      run: |
+        python -m poetry run type-check
+    - name: Test
+      run: |
+        python -m poetry run tests
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2

@@ -17,3 +17,7 @@ def run_format():
 def run_lint():
     # lint source and test files
     run_cmd("poetry run pylint --output-format=colorized src tests")
+
+def run_type_check():
+    # type check source
+    run_cmd("poetry run pyright")

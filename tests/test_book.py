@@ -1,7 +1,7 @@
 # pylint: disable=missing-module-docstring, missing-function-docstring
 import pytest
 import requests_mock
-from kognitos.bdk.concept import NounPhrase
+from kognitos.bdk.api import NounPhrase
 
 from openweather import OPENWEATHER_BASE_URL, OpenWeatherBook
 

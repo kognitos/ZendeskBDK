@@ -6,8 +6,8 @@ from typing import Optional
 from urllib.parse import quote
 
 import requests
-from kognitos.bdk import procedure, book, connect
-from kognitos.bdk.concept import NounPhrase
+from kognitos.bdk.decorators import procedure, book, connect
+from kognitos.bdk.api import NounPhrase
 
 OPENWEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 DEFAULT_TIMEOUT = 30
