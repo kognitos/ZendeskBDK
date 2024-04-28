@@ -16,20 +16,23 @@ DEFAULT_TIMEOUT = 30
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-@book(icon="data/icon.svg")
+@book(name="Open Weather", icon="data/icon.svg")
 class OpenWeatherBook:
     """
-    A book for A short description of the project.
+    OpenWeather book enables users to fetch real-time temperature data for any city worldwide via the OpenWeather API.
+
+    OpenWeather provides comprehensive weather data services, including current, forecast, and historical weather
+    information. Explore a wide range of APIs for solar radiation, road risk assessment, solar energy prediction,
+    and more, with global coverage and user-friendly access. Ideal for developers and businesses seeking accurate and
+    reliable weather insights.
 
     Author:
-      Your Name
+        Kognitos, Inc.
     """
 
     def __init__(self):
         """
         Initializes an instance of the class.
-
-        :param self: The instance of the class.
         """
         self._base_url = OPENWEATHER_BASE_URL
         self._api_key = None
@@ -40,7 +43,7 @@ class OpenWeatherBook:
         """
         Get the value of the timeout.
 
-        Parameters:
+        Arguments:
             None
 
         Returns:
@@ -53,7 +56,7 @@ class OpenWeatherBook:
     def timeout(self, timeout: float):
         """Sets the timeout value in milliseconds.
 
-        Args:
+        Arguments:
             timeout (int): The timeout value to set. Must be a positive integer.
 
         Raises:
@@ -84,17 +87,19 @@ class OpenWeatherBook:
 
         self._api_key = api_key
 
-    @procedure("to get the current temperature at a city")
-    def current_temperature(self, city: NounPhrase) -> Optional[float]:
+    @procedure("to get the (current temperature) at a city")
+    def current_temperature(self, city: NounPhrase, units: Optional[str] = "standard") -> Optional[float]:
         """Fetch the current temperature for a specified city.
 
-        Args:
-            city (str): The name of the city.
+        Arguments:
+            city: The name of the city.
+            units: Units of measurement. standard, metric and imperial units are available. If you do
+                not specify the units, standard units will be applied by default.
 
         Returns:
-            Optional[float]: The current temperature in Celsius, or None if an error occurs.
+            The current temperature in the specified units of measurement, or None if an error occurs.
         """
-        complete_url = f"{self._base_url}?appid={self._api_key}&q={quote(city.to_string())}&units=metric"
+        complete_url = f"{self._base_url}?appid={self._api_key}&q={quote(city.to_string())}&units={units}"
         try:
             response = requests.get(complete_url, timeout=self._timeout)
             weather_data = response.json()
