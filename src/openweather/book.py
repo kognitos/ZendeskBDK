@@ -8,6 +8,7 @@ from urllib.parse import quote
 import requests
 from kognitos.bdk.decorators import procedure, book, connect
 from kognitos.bdk.api import NounPhrase
+from requests import HTTPError
 
 OPENWEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 DEFAULT_TIMEOUT = 30
@@ -88,18 +89,29 @@ class OpenWeatherBook:
         self._api_key = api_key
 
     @procedure("to get the (current temperature) at a city")
-    def current_temperature(self, city: NounPhrase, units: Optional[str] = "standard") -> Optional[float]:
+    def current_temperature(self, city: NounPhrase, unit: Optional[NounPhrase] = NounPhrase("standard")) -> float:
         """Fetch the current temperature for a specified city.
 
-        Arguments:
-            city: The name of the city.
-            units: Units of measurement. standard, metric and imperial units are available. If you do
+        Input Concepts:
+            the city: The name of the city. Please refer to ISO 3166 for the state codes or country codes.
+            the unit: Unit of measurement. standard, metric and imperial units are available. If you do
                 not specify the units, standard units will be applied by default.
 
-        Returns:
-            The current temperature in the specified units of measurement, or None if an error occurs.
+        Output Concepts:
+            the current temperature: The current temperature in the specified units of measurement, or None if an error occurs.
+
+        Example 1:
+            Retrieve the current temperature at London
+
+            >>> get the current temperature at London
+
+        Example 2:
+            Retrieve the current temperature at London in Celsius
+
+            >>> get the current temperature at Buenos Aires with
+            ...     the unit is metric
         """
-        complete_url = f"{self._base_url}?appid={self._api_key}&q={quote(city.to_string())}&units={units}"
+        complete_url = f"{self._base_url}?appid={self._api_key}&q={quote(city.to_string())}&units={unit.to_string() if unit else 'standard'}"
         try:
             response = requests.get(complete_url, timeout=self._timeout)
             weather_data = response.json()
@@ -110,10 +122,10 @@ class OpenWeatherBook:
             logger.error(
                 "error fetching data for %s, response Code: %s", city.to_string(), weather_data['cod']
             )
-            return None
+            raise HTTPError(weather_data['message'])
         except requests.Timeout:
             logger.error("request timed out")
-            return None
+            raise
         except requests.RequestException as e:
             logger.error("error occurred: %s", e)
-            return None
+            raise

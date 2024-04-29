@@ -2,6 +2,7 @@
 import pytest
 import requests_mock
 from kognitos.bdk.api import NounPhrase
+from requests import HTTPError
 
 from openweather import OPENWEATHER_BASE_URL, OpenWeatherBook
 
@@ -41,11 +42,28 @@ def test_current_temperature(openweather_book):
             status_code=200,
         )
         m.get(
-            f"{OPENWEATHER_BASE_URL}?q=New%20York&appid={API_KEY}&units=metric",
+            f"{OPENWEATHER_BASE_URL}?q=New%20York&appid={API_KEY}&units=standard",
             json={"cod": 200, "main": {"temp": 20.0}},
         )
         openweather_book.connect(API_KEY)
         temperature = openweather_book.current_temperature(NounPhrase("New York", []))
+        assert temperature == 20.0, "The temperature should be 20.0°C"
+
+
+def test_current_temperature_with_units(openweather_book):
+    with requests_mock.Mocker() as m:
+        m.get(
+            f"{OPENWEATHER_BASE_URL}?appid={API_KEY}&q=London",
+            status_code=200,
+        )
+        m.get(
+            f"{OPENWEATHER_BASE_URL}?q=New%20York&appid={API_KEY}&units=metric",
+            json={"cod": 200, "main": {"temp": 20.0}},
+        )
+        openweather_book.connect(API_KEY)
+        temperature = openweather_book.current_temperature(
+            NounPhrase("New York"), unit=NounPhrase("metric")
+        )
         assert temperature == 20.0, "The temperature should be 20.0°C"
 
 
@@ -56,12 +74,10 @@ def test_get_current_temperature_error_response(openweather_book):
             status_code=200,
         )
         m.get(
-            f"{OPENWEATHER_BASE_URL}?q=NonExistentCity&appid={API_KEY}&units=metric",
+            f"{OPENWEATHER_BASE_URL}?q=NonExistentCity&appid={API_KEY}&units=standard",
             json={"cod": 404, "message": "city not found"},
             status_code=404,
         )
         openweather_book.connect(API_KEY)
-        temperature = openweather_book.current_temperature(
-            NounPhrase("NonExistentCity", [])
-        )
-        assert temperature is None
+        with pytest.raises(HTTPError):
+            openweather_book.current_temperature(NounPhrase("NonExistentCity", []))

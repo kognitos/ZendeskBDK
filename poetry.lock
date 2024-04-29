@@ -656,13 +656,13 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-ena
 
 [[package]]
 name = "kognitos-bdk-api"
-version = "0.12.0"
+version = "0.12.3"
 description = "Kognitos Book Development Kit"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_api-0.12.0-py3-none-any.whl", hash = "sha256:ffbec1ae6bee00fa601b539270260ef3d4f3818a953e86b67cc45cef1236392b"},
-    {file = "kognitos_bdk_api-0.12.0.tar.gz", hash = "sha256:046441541270e8f039577c7485cacb91371d0cf94e0dcc63daa962ef3a4a5ed1"},
+    {file = "kognitos_bdk_api-0.12.3-py3-none-any.whl", hash = "sha256:d7aae647a97d99242c6c2aa146ef476e06325b0345da7843d86c1872430aa059"},
+    {file = "kognitos_bdk_api-0.12.3.tar.gz", hash = "sha256:c9600487024a63f75bd615830f53a5df593bb583b2fe7d885336ca61eb32ed2a"},
 ]
 
 [package.dependencies]
@@ -676,17 +676,17 @@ reference = "bdk"
 
 [[package]]
 name = "kognitos-bdk-linter"
-version = "1.0.1"
+version = "1.0.2"
 description = "Kognitos BDK Linter"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_linter-1.0.1-py3-none-any.whl", hash = "sha256:acebb30b68b327ded7e0d6bf0b647bd6461b27d7f0dc5c2be64beb863791b0c6"},
-    {file = "kognitos_bdk_linter-1.0.1.tar.gz", hash = "sha256:2fd6e27e24fed8dfc8d9a400560b205fcaa1c84b12ec5c2381039c92d966b9e3"},
+    {file = "kognitos_bdk_linter-1.0.2-py3-none-any.whl", hash = "sha256:f0a64d08c4403ec32feb6599264c67a932f2d846ca25c4ad0e9ef356d6a26815"},
+    {file = "kognitos_bdk_linter-1.0.2.tar.gz", hash = "sha256:4b07ee047eda82265f1d730c75ebb631cd29778a261ac98b99b44afed19a5f75"},
 ]
 
 [package.dependencies]
-kognitos-bdk-api = ">=0.12,<0.13"
+kognitos-bdk-api = ">=0.12.3,<0.13.0"
 pylint = ">=3.0.3,<4.0.0"
 typing-utils = ">=0.1.0,<0.2.0"
 
@@ -705,11 +705,8 @@ files = []
 develop = true
 
 [package.dependencies]
-kognitos-bdk-api = "^0.12"
 poetry = "^1.8.2"
-pylint = "^3.0.3"
 snakemd = "^2.2.0"
-typing-utils = "^0.1.0"
 
 [package.source]
 type = "directory"
@@ -1066,13 +1063,13 @@ testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pyproject-hooks"
-version = "1.0.0"
+version = "1.1.0"
 description = "Wrappers to call pyproject.toml-based build backend hooks."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyproject_hooks-1.0.0-py3-none-any.whl", hash = "sha256:283c11acd6b928d2f6a7c73fa0d01cb2bdc5f07c57a2eeb6e83d5e56b97976f8"},
-    {file = "pyproject_hooks-1.0.0.tar.gz", hash = "sha256:f271b298b97f5955d53fb12b72c1fb1948c22c1a6b70b315c54cedaca0264ef5"},
+    {file = "pyproject_hooks-1.1.0-py3-none-any.whl", hash = "sha256:7ceeefe9aec63a1064c18d939bdc3adf2d8aa1988a510afec15151578b232aa2"},
+    {file = "pyproject_hooks-1.1.0.tar.gz", hash = "sha256:4b37730834edbd6bd37f26ece6b44802fb1c1ee2ece0e54ddff8bfc06db86965"},
 ]
 
 [[package]]
@@ -1524,4 +1521,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<4.0"
-content-hash = "608debe5feb0a0ee73e2d61587b6c2d1bffaec6b9f21d308021d857a4d79d689"
+content-hash = "e0e00cdb88a4d15363827819f18ec90ad503b5e225688476690819929546e7f5"
