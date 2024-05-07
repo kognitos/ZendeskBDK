@@ -21,7 +21,7 @@ Once Pyenv is installed, you can install Python 3.11 using the following command
 
 
 ```shell
-pyenv install 3.11.0
+pyenv install 3.11
 ```
  
 ### Poetry
@@ -35,14 +35,6 @@ curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 ## Setting Up the Project
-
-### Clone the Repository
-Ensure you have the necessary permissions to access the repository and clone it to your local machine:
-
-```shell
-git clone <some repository>
-cd bdk
-```
 
 ### Install Dependencies
 Use Poetry to install all required dependencies in an isolated environment. This book is dependent on BDK API, which

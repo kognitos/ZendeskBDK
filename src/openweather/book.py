@@ -6,7 +6,7 @@ from typing import Optional
 from urllib.parse import quote
 
 import requests
-from kognitos.bdk.decorators import procedure, book, connect
+from kognitos.bdk.decorators import procedure, book, connect, config
 from kognitos.bdk.api import NounPhrase
 from requests import HTTPError
 
@@ -40,29 +40,17 @@ class OpenWeatherBook:
         self._timeout = float(DEFAULT_TIMEOUT)
 
     @property
+    @config
     def timeout(self) -> float:
         """
         Get the value of the timeout.
-
-        Arguments:
-            None
-
-        Returns:
-            The value of the timeout.
-
         """
         return self._timeout
 
     @timeout.setter
     def timeout(self, timeout: float):
-        """Sets the timeout value in milliseconds.
-
-        Arguments:
-            timeout (int): The timeout value to set. Must be a positive integer.
-
-        Raises:
-            ValueError: If the timeout value is less than or equal to 0.
-
+        """
+        Sets the timeout value in milliseconds.
         """
         if timeout <= 0:
             raise ValueError("timeout must be positive")

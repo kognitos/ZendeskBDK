@@ -254,13 +254,13 @@ colors = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "kognitos-bdk-api"
-version = "0.12.3"
+version = "0.13.0"
 description = "Kognitos Book Development Kit"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_api-0.12.3-py3-none-any.whl", hash = "sha256:d7aae647a97d99242c6c2aa146ef476e06325b0345da7843d86c1872430aa059"},
-    {file = "kognitos_bdk_api-0.12.3.tar.gz", hash = "sha256:c9600487024a63f75bd615830f53a5df593bb583b2fe7d885336ca61eb32ed2a"},
+    {file = "kognitos_bdk_api-0.13.0-py3-none-any.whl", hash = "sha256:3ae3088739f3a1b4d8e518b3898b5ae8665da898a79b0825e748eb797d7755a6"},
+    {file = "kognitos_bdk_api-0.13.0.tar.gz", hash = "sha256:10d0b5f8f08dbb929bf1f8c22202234180b0566467b6dde779f52b299c1319b6"},
 ]
 
 [package.dependencies]
@@ -274,17 +274,17 @@ reference = "bdk"
 
 [[package]]
 name = "kognitos-bdk-linter"
-version = "1.0.2"
+version = "1.1.0"
 description = "Kognitos BDK Linter"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_linter-1.0.2-py3-none-any.whl", hash = "sha256:f0a64d08c4403ec32feb6599264c67a932f2d846ca25c4ad0e9ef356d6a26815"},
-    {file = "kognitos_bdk_linter-1.0.2.tar.gz", hash = "sha256:4b07ee047eda82265f1d730c75ebb631cd29778a261ac98b99b44afed19a5f75"},
+    {file = "kognitos_bdk_linter-1.1.0-py3-none-any.whl", hash = "sha256:c8cfe89d6e81d74c9ab1720e7b450a3beb11ae413d0b570ac4f0983649b1ed13"},
+    {file = "kognitos_bdk_linter-1.1.0.tar.gz", hash = "sha256:adf9739d6cb6f92a03f95dd2446990775637ba69bfafa79764b5b715e8d0d41e"},
 ]
 
 [package.dependencies]
-kognitos-bdk-api = ">=0.12.3,<0.13.0"
+kognitos-bdk-api = ">=0.13,<0.14"
 pylint = ">=3.0.3,<4.0.0"
 typing-utils = ">=0.1.0,<0.2.0"
 
@@ -457,13 +457,13 @@ testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pyright"
-version = "1.1.360"
+version = "1.1.361"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.360-py3-none-any.whl", hash = "sha256:7637f75451ac968b7cf1f8c51cfefb6d60ac7d086eb845364bc8ac03a026efd7"},
-    {file = "pyright-1.1.360.tar.gz", hash = "sha256:784ddcda9745e9f5610483d7b963e9aa8d4f50d7755a9dffb28ccbeb27adce32"},
+    {file = "pyright-1.1.361-py3-none-any.whl", hash = "sha256:c50fc94ce92b5c958cfccbbe34142e7411d474da43d6c14a958667e35b9df7ea"},
+    {file = "pyright-1.1.361.tar.gz", hash = "sha256:1d67933315666b05d230c85ea8fb97aaa2056e4092a13df87b7765bb9e8f1a8d"},
 ]
 
 [package.dependencies]
@@ -621,4 +621,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<4.0"
-content-hash = "cd89f9664c1f5da933218c1219aa82277c0bd53a14ff782fbd3e9f2b703a6afe"
+content-hash = "3e335aaa5cfaf00fc2e2f422d611bcc1e443b0d6aef889b95bd713d40d90c6c2"
