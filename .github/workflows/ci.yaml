@@ -1,12 +1,20 @@
 name: CI
+
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
+
+env:
+  PROJECT_NAME: "kognitos"
+  BOOK_NAME: "openweather"  # To be set by cookiecutter
+  DOCKER_REGISTRY: "719468614044.dkr.ecr.us-west-2.amazonaws.com" # To be set by cookiecutter???
+
 jobs:
   Publish:
     runs-on: ubuntu-latest
@@ -73,3 +81,13 @@ jobs:
         DOCKER_REGISTRY_USER: ${{ steps.login-ecr.outputs.docker_username_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
         DOCKER_REGISTRY_PASSWORD: ${{ steps.login-ecr.outputs.docker_password_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Terraform Deploy
+      uses: ./.github/actions/terraform
+      if: steps.semantic.outputs.new_release_published == 'true'
+      with:
+        MAJOR_VERSION: ${{ steps.semantic.outputs.new_release_major_version }}
+        MINOR_VERSION: ${{ steps.semantic.outputs.new_release_minor_version }}
+        PATCH_VERSION: ${{ steps.semantic.outputs.new_release_patch_version }}
+        PROJECT_NAME: ${{ env.PROJECT_NAME }}
+        BOOK_NAME: ${{ env.BOOK_NAME }}
+        DOCKER_REGISTRY: ${{ env.DOCKER_REGISTRY }}
