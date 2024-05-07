@@ -254,13 +254,13 @@ colors = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "kognitos-bdk-api"
-version = "0.13.0"
+version = "0.13.1"
 description = "Kognitos Book Development Kit"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_api-0.13.0-py3-none-any.whl", hash = "sha256:3ae3088739f3a1b4d8e518b3898b5ae8665da898a79b0825e748eb797d7755a6"},
-    {file = "kognitos_bdk_api-0.13.0.tar.gz", hash = "sha256:10d0b5f8f08dbb929bf1f8c22202234180b0566467b6dde779f52b299c1319b6"},
+    {file = "kognitos_bdk_api-0.13.1-py3-none-any.whl", hash = "sha256:f4aea0222a0990cf77a195d23378eb2a8c833db1bc9abce93bd24aad98c29dfe"},
+    {file = "kognitos_bdk_api-0.13.1.tar.gz", hash = "sha256:450a76f1b02862103b060fa375bda8dbb7835a4ea35460f34b21b9c956b5b465"},
 ]
 
 [package.dependencies]
@@ -274,13 +274,13 @@ reference = "bdk"
 
 [[package]]
 name = "kognitos-bdk-linter"
-version = "1.1.0"
+version = "1.1.1"
 description = "Kognitos BDK Linter"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_linter-1.1.0-py3-none-any.whl", hash = "sha256:c8cfe89d6e81d74c9ab1720e7b450a3beb11ae413d0b570ac4f0983649b1ed13"},
-    {file = "kognitos_bdk_linter-1.1.0.tar.gz", hash = "sha256:adf9739d6cb6f92a03f95dd2446990775637ba69bfafa79764b5b715e8d0d41e"},
+    {file = "kognitos_bdk_linter-1.1.1-py3-none-any.whl", hash = "sha256:d030d058746541eb5156be5b2d72fcc673b2e032a341281387b19b3152bd17ed"},
+    {file = "kognitos_bdk_linter-1.1.1.tar.gz", hash = "sha256:c4a0e6879251f78d9fa7d43cbb6d683de11d927a0b59e004b245f00e695f1882"},
 ]
 
 [package.dependencies]
