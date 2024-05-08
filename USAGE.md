@@ -6,11 +6,17 @@ OpenWeather book enables users to fetch real-time temperature data for any city 
 
 OpenWeather provides comprehensive weather data services, including current, forecast, and historical weather information. Explore a wide range of APIs for solar radiation, road risk assessment, solar energy prediction, and more, with global coverage and user-friendly access. Ideal for developers and businesses seeking accurate and reliable weather insights.
 
-### Connectivity
+1. [Connectivity](#connectivity)
+   1. [Connect using API Key](#connect-using-api-key)
+2. [Configuration](#configuration)
+3. [Procedures](#procedures)
+   1. [to get the (current temperature) at a city](#to-get-the-(current-temperature)-at-a-city)
+
+## Connectivity
 
 This books supports the connectivity methods described in this section. In here you will find information about what information is required in order to employ each method.
 
-#### Connect using API Key
+### Connect using API Key
 
 Authenticate to Open Weather API using the specified API key. You can obtain you own API key by visiting
 
@@ -18,7 +24,7 @@ Authenticate to Open Weather API using the specified API key. You can obtain you
 | ------- | ------------------------------------- | ------ |
 | API Key | The API key to be used for connecting | `text` |
 
-### Configuration
+## Configuration
 
 The following table details all the available configuration options for this book.
 
@@ -32,24 +38,28 @@ Configuration can be set or retrieved as shown in the following examples:
 the department's Open Weather's timeout is 30
 ```
 
-## to get the (current temperature) at a city
+## Procedures
+
+### to get the (current temperature) at a city
+
+***
 
 Fetch the current temperature for a specified city.
 
-### Input Concepts
+#### Input Concepts
 
 | Concept | Description                                                                                                                                         | Type   | Required | Default Value |
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | -------- | ------------- |
 | `city`  | The name of the city. Please refer to ISO 3166 for the state codes or country codes.                                                                | `noun` | Yes      |               |
 | `unit`  | Unit of measurement. standard, metric and imperial units are available. If you do not specify the units, standard units will be applied by default. | `noun` | No       | standard      |
 
-### Output Concepts
+#### Output Concepts
 
 | Concept               | Description                                                                                | Type     |
 | --------------------- | ------------------------------------------------------------------------------------------ | -------- |
 | `current temperature` | The current temperature in the specified units of measurement, or None if an error occurs. | `number` |
 
-### Examples
+#### Examples
 
 Retrieve the current temperature at London
 
