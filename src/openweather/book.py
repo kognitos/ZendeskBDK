@@ -40,17 +40,17 @@ class OpenWeatherBook:
         self._timeout = float(DEFAULT_TIMEOUT)
 
     @property
-    @config
+    @config(default_value=DEFAULT_TIMEOUT)
     def timeout(self) -> float:
         """
-        Get the value of the timeout.
+        Timeout in seconds when making API calls to OpenWeather
         """
         return self._timeout
 
     @timeout.setter
     def timeout(self, timeout: float):
         """
-        Sets the timeout value in milliseconds.
+        Sets the timeout value in seconds.
         """
         if timeout <= 0:
             raise ValueError("timeout must be positive")
@@ -59,7 +59,8 @@ class OpenWeatherBook:
     @connect
     def connect(self, api_key: str):
         """
-        Connects to an API using the provided API key.
+        Authenticate to Open Weather API using the specified API key. You can obtain you own API key by visiting
+        Open Weahter's website at https://openweathermap.org/appid.
 
         Arguments:
             api_key: The API key to be used for connecting

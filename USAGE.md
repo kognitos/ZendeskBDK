@@ -6,6 +6,32 @@ OpenWeather book enables users to fetch real-time temperature data for any city 
 
 OpenWeather provides comprehensive weather data services, including current, forecast, and historical weather information. Explore a wide range of APIs for solar radiation, road risk assessment, solar energy prediction, and more, with global coverage and user-friendly access. Ideal for developers and businesses seeking accurate and reliable weather insights.
 
+### Connectivity
+
+This books supports the connectivity methods described in this section. In here you will find information about what information is required in order to employ each method.
+
+#### Connect using API Key
+
+Authenticate to Open Weather API using the specified API key. You can obtain you own API key by visiting
+
+| Label   | Description                           | Type   |
+| ------- | ------------------------------------- | ------ |
+| API Key | The API key to be used for connecting | `text` |
+
+### Configuration
+
+The following table details all the available configuration options for this book.
+
+| Concept   | Description                                             | Type     | Default Value |
+| --------- | ------------------------------------------------------- | -------- | ------------- |
+| `timeout` | Timeout in seconds when making API calls to OpenWeather | `number` | 30            |
+
+Configuration can be set or retrieved as shown in the following examples:
+
+```generic
+the department's Open Weather's timeout is 30
+```
+
 ## to get the (current temperature) at a city
 
 Fetch the current temperature for a specified city.
