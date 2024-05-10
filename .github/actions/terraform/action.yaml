@@ -10,15 +10,21 @@ inputs:
   PATCH_VERSION:
     required: true
     type: string
-  PROJECT_NAME:
-    required: true
-    type: string
   BOOK_NAME:
     required: true
     type: string
   DOCKER_REGISTRY:
     required: true
     type: string
+  BACKEND_BUCKET_NAME:
+    required: true
+    type: string
+  AWS_REGION:
+    type: string  
+    default: "us-west-2"
+  WORKING_DIRECTORY:
+    type: string
+    default: "./terraform"
   CHECK_BEFORE_APPLY:
     type: bool
     default: true
@@ -26,7 +32,18 @@ inputs:
 env:
   SEMVER: "${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.PATCH_VERSION }}"
   BOOK_LAMBDA_SEMVER: "${{ inputs.MAJOR_VERSION }}_${{ inputs.MINOR_VERSION }}_${{ inputs.PATCH_VERSION }}"
-  IMAGE_URI: "${{ inputs.DOCKER_REGISTRY }}/${{ inputs.PROJECT_NAME }}/book/${{ inputs.BOOK_NAME }}/${{ env.SEMVER }}"
+  IMAGE_URI: "${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}/${{ env.SEMVER }}"
+
+  INIT_CONFIG: |
+    -backend-config="bucket=${{ inputs.BACKEND_BUCKET_NAME }}"
+    -backend-config="region=${{ inputs.AWS_REGION }}"
+    -backend-config="key=common_configuration.tfstate"
+
+  INLINE_VARS: |
+    -var region=${{ inputs.AWS_REGION }}
+    -var book_version=${{ env.BOOK_LAMBDA_SEMVER }}
+    -var book_name=${{ inputs.BOOK_NAME }}
+    -var image_uri=${{ env.IMAGE_URI }}
 
 runs:
   using: "composite"
@@ -34,25 +51,15 @@ runs:
     - uses: hashicorp/setup-terraform@v3
 
     - shell: bash
-      run: terraform -chdir=./working_directories/initial_configuration init -backend-config="bucket=terraform-${{ env.BOOK_LAMBDA_SEMVER }}-backend"
-    - shell: bash
-      run: terraform -chdir=./working_directories/book_lambda init -backend-config="key=${{ env.BOOK_LAMBDA_SEMVER }}.book_lambda.tfstate"
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} init ${{ env.INIT_CONFIG }}
 
     - if: inputs.CHECK_BEFORE_APPLY
       shell: bash
-      run: terraform -chdir=./working_directories/initial_configuration validate -var book_name=${{ inputs.BOOK_NAME }}
-    - if: inputs.CHECK_BEFORE_APPLY
-      shell: bash
-      run: terraform -chdir=./working_directories/book_lambda validate -var book_version=${{ env.BOOK_LAMBDA_SEMVER }} -var book_name=${{ inputs.BOOK_NAME }} -var image_uri=${{ env.IMAGE_URI }}
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} validate ${{ env.INLINE_VARS }}
 
     - if: inputs.CHECK_BEFORE_APPLY
       shell: bash
-      run: terraform -chdir=./working_directories/initial_configuration plan -var book_name=${{ inputs.BOOK_NAME }}
-    - if: inputs.CHECK_BEFORE_APPLY
-      shell: bash
-      run: terraform -chdir=./working_directories/book_lambda plan -var book_version=${{ env.BOOK_LAMBDA_SEMVER }} -var book_name=${{ inputs.BOOK_NAME }} -var image_uri=${{ env.IMAGE_URI }}
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} plan ${{ env.INLINE_VARS }}
 
     - shell: bash
-      run: terraform -chdir=./working_directories/initial_configuration apply -var book_name=${{ inputs.BOOK_NAME }} -auto-approve
-    - shell: bash
-      run: terraform -chdir=./working_directories/book_lambda apply -var book_version=${{ env.BOOK_LAMBDA_SEMVER }} -var book_name=${{ inputs.BOOK_NAME }} -var image_uri=${{ env.IMAGE_URI }} -auto-approve
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} apply ${{ env.INLINE_VARS }} -auto-approve

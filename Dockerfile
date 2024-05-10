@@ -1,5 +1,4 @@
 # BDK Runtime Base Image
-# TODO maybe set this with cookiecutter
 FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:1.3.2 as builder
 
 # CodeArtifact Token to download BDK API from
@@ -44,7 +43,6 @@ RUN /poetry/bin/poetry build -f wheel -n \
     && pip install --no-deps dist/*.whl
 
 # Final image
-# TODO maybe set this with cookiecutter
 FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:latest
 
 # Copy python environemnt

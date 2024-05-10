@@ -11,9 +11,9 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  PROJECT_NAME: "kognitos"
-  BOOK_NAME: "openweather"  # To be set by cookiecutter
-  DOCKER_REGISTRY: "719468614044.dkr.ecr.us-west-2.amazonaws.com" # To be set by cookiecutter???
+  BOOK_NAME: "openweather"  # This is set by cookiecutter
+  DOCKER_REGISTRY: "719468614044.dkr.ecr.us-west-2.amazonaws.com"  # This is set by cookiecutter
+  TERRAFORM_BACKEND_BUCKET_NAME: "bdk-terraform-backend"
 
 jobs:
   Publish:
@@ -88,6 +88,6 @@ jobs:
         MAJOR_VERSION: ${{ steps.semantic.outputs.new_release_major_version }}
         MINOR_VERSION: ${{ steps.semantic.outputs.new_release_minor_version }}
         PATCH_VERSION: ${{ steps.semantic.outputs.new_release_patch_version }}
-        PROJECT_NAME: ${{ env.PROJECT_NAME }}
         BOOK_NAME: ${{ env.BOOK_NAME }}
         DOCKER_REGISTRY: ${{ env.DOCKER_REGISTRY }}
+        BACKEND_BUCKET_NAME: ${{ env.TERRAFORM_BACKEND_BUCKET_NAME }}

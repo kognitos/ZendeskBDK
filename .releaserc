@@ -11,10 +11,10 @@ plugins:
           - '{{version}}'
           - '{{major}}-latest'
           - '{{major}}.{{minor}}'
-        dockerImage: 'book/{{ env.BOOK_NAME }}/{{version}}'
+        dockerImage: 'book/{{ env.BOOK_NAME }}'
         dockerFile: 'Dockerfile'
         dockerRegistry: '{{ env.DOCKER_REGISTRY }}'
-        dockerProject: '{{ env.DOCKER_PROJECT }}'
+        dockerProject: 'kognitos'
         dockerBuildQuiet: false
         dockerArgs:
             CODE_ARTIFACT_TOKEN: '{{ env.CODE_ARTIFACT_TOKEN }}'
