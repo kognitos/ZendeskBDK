@@ -48,7 +48,7 @@ EOF
 }
 
 resource "aws_iam_policy_attachment" "basic_lambda_policy_attachment" {
-  name       = "${var.book_name}_${var.book_version}_book_lambda_role_policy_attachment"
+  name       = "${var.book_name}_${var.book_version}_lambda_role_policy_attachment"
   roles      = [aws_iam_role.book_lambda_role.name]
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
@@ -56,14 +56,15 @@ resource "aws_iam_policy_attachment" "basic_lambda_policy_attachment" {
 resource "aws_lambda_function" "book_lambda" {
   package_type  = "Image"
   image_uri     = var.image_uri
-  function_name = "${var.book_name}-lambda-${var.book_version}"
+  function_name = "${var.book_name}_${var.book_version}_lambda"
   role          = aws_iam_role.python.arn
   timeout       = var.lambda_timeout
   memory_size   = var.lambda_memory_size
 
   tags = {
-    version     = var.book_version
-    owner       = var.owner
-    runtime     = var.runtime
+    book_name     = var.book_name
+    book_version  = var.book_version
+    owner         = var.owner
+    runtime       = var.runtime
   }
 }
