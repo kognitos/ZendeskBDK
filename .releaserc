@@ -11,9 +11,9 @@ plugins:
           - '{{version}}'
           - '{{major}}-latest'
           - '{{major}}.{{minor}}'
-        dockerImage: 'book/{{ env.BOOK_NAME }}'
+        dockerImage: 'book/openweather'
         dockerFile: 'Dockerfile'
-        dockerRegistry: '{{ env.DOCKER_REGISTRY }}'
+        dockerRegistry: '719468614044.dkr.ecr.us-west-2.amazonaws.com'
         dockerProject: 'kognitos'
         dockerBuildQuiet: false
         dockerArgs:
