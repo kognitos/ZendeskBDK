@@ -1,0 +1,65 @@
+name: "Terraform Deploy"
+
+inputs:
+  MAJOR_VERSION:
+    required: true
+    type: string
+  MINOR_VERSION:
+    required: true
+    type: string
+  PATCH_VERSION:
+    required: true
+    type: string
+  BOOK_NAME:
+    required: true
+    type: string
+  DOCKER_REGISTRY:
+    required: true
+    type: string
+  BACKEND_BUCKET_NAME:
+    required: true
+    type: string
+  AWS_REGION:
+    type: string  
+    default: "us-west-2"
+  WORKING_DIRECTORY:
+    type: string
+    default: "./terraform"
+  CHECK_BEFORE_APPLY:
+    type: bool
+    default: true
+
+env:
+  SEMVER: "${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.PATCH_VERSION }}"
+  BOOK_LAMBDA_SEMVER: "${{ inputs.MAJOR_VERSION }}_${{ inputs.MINOR_VERSION }}_${{ inputs.PATCH_VERSION }}"
+  IMAGE_URI: "${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}/${{ env.SEMVER }}"
+
+  INIT_CONFIG: |
+    -backend-config="bucket=${{ inputs.BACKEND_BUCKET_NAME }}"
+    -backend-config="region=${{ inputs.AWS_REGION }}"
+    -backend-config="key=common_configuration.tfstate"
+
+  INLINE_VARS: |
+    -var region=${{ inputs.AWS_REGION }}
+    -var book_version=${{ env.BOOK_LAMBDA_SEMVER }}
+    -var book_name=${{ inputs.BOOK_NAME }}
+    -var image_uri=${{ env.IMAGE_URI }}
+
+runs:
+  using: "composite"
+  steps:
+    - uses: hashicorp/setup-terraform@v3
+
+    - shell: bash
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} init ${{ env.INIT_CONFIG }}
+
+    - if: inputs.CHECK_BEFORE_APPLY
+      shell: bash
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} validate ${{ env.INLINE_VARS }}
+
+    - if: inputs.CHECK_BEFORE_APPLY
+      shell: bash
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} plan ${{ env.INLINE_VARS }}
+
+    - shell: bash
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} apply ${{ env.INLINE_VARS }} -auto-approve
