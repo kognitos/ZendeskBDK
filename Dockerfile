@@ -1,5 +1,5 @@
 # BDK Runtime Base Image
-FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:1.3.2 as builder
+FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:1.4.3 as builder
 
 # CodeArtifact Token to download BDK API from
 ARG CODE_ARTIFACT_TOKEN
