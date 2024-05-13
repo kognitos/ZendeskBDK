@@ -1,0 +1,105 @@
+name: Semantic Release
+
+on:
+  workflow_call:
+    inputs:
+      BOOK_NAME:
+        required: true
+        type: string
+      DOCKER_REGISTRY:
+        required: true
+        type: string
+      TERRAFORM_BACKEND_BUCKET_NAME:
+        required: true
+        type: string
+      TERRAFORM_WORKING_DIRECTORY:
+        required: false
+        type: string
+        default: "./terraform"
+      AWS_REGION:
+        required: false
+        type: string
+        default: "us-west-2"
+      BRANCHES:
+        required: false
+        type: string
+        default: "main"
+
+    secrets:
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY:
+        required: true
+      AWS_ROLE_TO_ASSUME:
+        required: true
+      AWS_ROLE_EXTERNAL_ID:
+        required: true
+
+    outputs:
+      new_release_published: 
+        value: ${{ jobs.SemanticRelease.outputs.new_release_published }}
+      new_release_version: 
+        value: ${{ jobs.SemanticRelease.outputs.new_release_version }}
+      new_release_major_version: 
+        value: ${{ jobs.SemanticRelease.outputs.new_release_major_version }}
+      new_release_minor_version: 
+        value: ${{ jobs.SemanticRelease.outputs.new_release_minor_version }}
+      new_release_patch_version: 
+        value: ${{ jobs.SemanticRelease.outputs.new_release_patch_version }}
+      lamnda_name: 
+        value: ${{ jobs.terraform.outputs.lambda_name }}
+      lamnda_arn: 
+        value: ${{ jobs.terraform.outputs.lambda_arn }}
+
+jobs:
+  SemanticRelease:
+    runs-on: ubuntu-latest
+    outputs:
+      new_release_published: ${{ steps.semantic.outputs.new_release_published }}
+      new_release_version: ${{ steps.semantic.outputs.new_release_version }}
+      new_release_major_version: ${{ steps.semantic.outputs.new_release_major_version }}
+      new_release_minor_version: ${{ steps.semantic.outputs.new_release_minor_version }}
+      new_release_patch_version: ${{ steps.semantic.outputs.new_release_patch_version }}
+      lamnda_name: ${{ steps.terraform.outputs.lambda_name }}
+      lamnda_arn: ${{ steps.terraform.outputs.lambda_arn }}
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-external-id: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
+        role-skip-session-tagging: true
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+    - name: Login to AWS CodeArtifact
+      id: codeartifact
+      run: |
+        token=$(aws codeartifact get-authorization-token --domain-owner 719468614044 --domain kognitos --query 'authorizationToken' --output text)
+        #echo "::add-mask::$token"
+        echo "token=$token" >> $GITHUB_OUTPUT
+    - name: Semantic Release Docker Image
+      id: semantic
+      uses: cycjimmy/semantic-release-action@v4
+      with:
+        branches: ${{ inputs.BRANCHES }}
+        extra_plugins: |
+          @codedependant/semantic-release-docker
+      env:
+        CODE_ARTIFACT_TOKEN: ${{ steps.codeartifact.outputs.token }}
+        DOCKER_REGISTRY_USER: ${{ steps.login-ecr.outputs.docker_username_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
+        DOCKER_REGISTRY_PASSWORD: ${{ steps.login-ecr.outputs.docker_password_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Terraform Deploy
+      id: terraform
+      uses: ./.github/actions/terraform
+      if: steps.semantic.outputs.new_release_published == 'true'
+      with:
+        INIT_CONFIG: -backend-config="region=${{ inputs.AWS_REGION }}" -backend-config="bucket=${{ inputs.TERRAFORM_BACKEND_BUCKET_NAME }}" -backend-config="key=${{ inputs.BOOK_NAME }}/${{ inputs.BOOK_NAME }}_${{ steps.semantic.new_release_major_version }}.${{ steps.semantic.new_release_minor_version }}.${{ steps.semantic.new_release_patch_version }}.tfstate"
+        VARIABLES_OVERRIDE: -var book_name=${{ inputs.BOOK_NAME }} -var region=${{ inputs.AWS_REGION }} -var book_version=${{ steps.semantic.new_release_major_version }}_${{ steps.semantic.new_release_minor_version }}_${{ steps.semantic.new_release_patch_version }} -var image_uri=${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}:${{ steps.semantic.new_release_major_version }}.${{ steps.semantic.new_release_minor_version }}.${{ steps.semantic.new_release_patch_version }}

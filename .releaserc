@@ -11,9 +11,9 @@ plugins:
           - '{{version}}'
           - '{{major}}-latest'
           - '{{major}}.{{minor}}'
-        dockerImage: 'book/openweather'
+        dockerImage: 'book/openweather'  # TODO set this with cookiecutter
         dockerFile: 'Dockerfile'
-        dockerRegistry: '719468614044.dkr.ecr.us-west-2.amazonaws.com'
+        dockerRegistry: '719468614044.dkr.ecr.us-west-2.amazonaws.com'  # TODO maybe parametrize this with a cookiecutter argument
         dockerProject: 'kognitos'
         dockerBuildQuiet: false
         dockerArgs:
