@@ -13,21 +13,6 @@ provider "aws" {
   region = var.region
 }
 
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-
-  backend "s3" {}
-}
-
-provider "aws" {
-  region = var.region
-}
-
 resource "aws_iam_role" "book_lambda_role" {
   name = "${var.book_name}_${var.book_version}_lambda_role"
   assume_role_policy = <<EOF
@@ -57,7 +42,7 @@ resource "aws_lambda_function" "book_lambda" {
   package_type  = "Image"
   image_uri     = var.image_uri
   function_name = "${var.book_name}_${var.book_version}_lambda"
-  role          = aws_iam_role.python.arn
+  role          = aws_iam_role.book_lambda_role.arn
   timeout       = var.lambda_timeout
   memory_size   = var.lambda_memory_size
 
@@ -67,4 +52,12 @@ resource "aws_lambda_function" "book_lambda" {
     owner         = var.owner
     runtime       = var.runtime
   }
+}
+
+output "lambda_name" {
+  value = aws_lambda_function.book_lambda.function_name
+}
+
+output "lambda_arn" {
+  value = aws_lambda_function.book_lambda.arn
 }

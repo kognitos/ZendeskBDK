@@ -43,6 +43,7 @@ RUN /poetry/bin/poetry build -f wheel -n \
     && pip install --no-deps dist/*.whl
 
 # Final image
+# TODO try to parametrize the version (maybe cookiecutter) and output it
 FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:latest
 
 # Copy python environemnt
