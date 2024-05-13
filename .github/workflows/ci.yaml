@@ -83,13 +83,3 @@ jobs:
         DOCKER_REGISTRY_USER: ${{ steps.login-ecr.outputs.docker_username_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
         DOCKER_REGISTRY_PASSWORD: ${{ steps.login-ecr.outputs.docker_password_719468614044_dkr_ecr_us_west_2_amazonaws_com }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Terraform Deploy
-      uses: ./.github/actions/terraform
-      if: steps.semantic.outputs.new_release_published == 'true'
-      with:
-        MAJOR_VERSION: ${{ steps.semantic.outputs.new_release_major_version }}
-        MINOR_VERSION: ${{ steps.semantic.outputs.new_release_minor_version }}
-        PATCH_VERSION: ${{ steps.semantic.outputs.new_release_patch_version }}
-        BOOK_NAME: ${{ env.BOOK_NAME }}
-        DOCKER_REGISTRY: ${{ env.DOCKER_REGISTRY }}
-        BACKEND_BUCKET_NAME: ${{ env.TERRAFORM_BACKEND_BUCKET_NAME }}
