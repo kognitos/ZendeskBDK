@@ -31,9 +31,9 @@ RUN /poetry/bin/poetry config http-basic.bdk aws "$CODE_ARTIFACT_TOKEN"\
     && /poetry/bin/poetry install --only main --no-root \
     && rm -Rf /root/.cache \
     && rm -Rf /root/.config \
-    && find /root/.pyenv/versions -type f \( -name "*.pyc" -o -name "*.pyo" \) -delete \
-    && find /root/.pyenv/versions -type d -name "test" -exec rm -rf {} + \
-    && find /root/.pyenv/versions -type d -name "__pycache__" -exec rm -rf {} +
+    && find /opt/python/versions -type f \( -name "*.pyc" -o -name "*.pyo" \) -delete \
+    && find /opt/python/versions -type d -name "test" -exec rm -rf {} + \
+    && find /opt/python/versions -type d -name "__pycache__" -exec rm -rf {} +
 
 # Copy project
 ADD . ./
@@ -47,4 +47,5 @@ RUN /poetry/bin/poetry build -f wheel -n \
 FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:1.6.2
 
 # Copy python environemnt
-COPY --from=builder /root/.pyenv/versions /root/.pyenv/versions
+COPY --from=builder /opt/python/versions /root/.pyenv/versions
+RUN chmod -R 777 /opt/python
