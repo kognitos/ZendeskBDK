@@ -47,5 +47,5 @@ RUN /poetry/bin/poetry build -f wheel -n \
 FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:1.6.2
 
 # Copy python environemnt
-COPY --from=builder /opt/python/versions /opt/ptyhon/versions
+COPY --from=builder /opt/python/versions /opt/python/versions
 RUN chmod -R 777 /opt/python
