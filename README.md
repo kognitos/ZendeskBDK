@@ -36,20 +36,6 @@ curl -sSL https://install.python-poetry.org | python3 -
 
 ## Setting Up the Project
 
-### Clone the Repository
-Ensure you have the necessary permissions to access the repository and clone it to your local machine:
-
-```shell
-git clone <some repository>
-cd bdk
-```
-
-### Local repo configuration
-```
-chmod 744 ./.repo_setup/repo_setup.sh
-./.repo_setup/repo_setup.sh
-```
-
 ### Install Dependencies
 Use Poetry to install all required dependencies in an isolated environment. This book is dependent on BDK API, which
 requires authentication prior to being able to use it.
