@@ -1,0 +1,12 @@
+#!/usr/bin/env python
+
+import re
+
+
+from hook_scripts import enforce_conventional_commits
+
+
+## Hook execution
+
+if __name__ == "__main__":
+    enforce_conventional_commits()
