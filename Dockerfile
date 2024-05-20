@@ -1,5 +1,5 @@
 # BDK Runtime Base Image
-FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:1.7.0 as builder
+FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:1.8.0 as builder
 
 # CodeArtifact Token to download BDK API from
 ARG CODE_ARTIFACT_TOKEN
@@ -44,7 +44,7 @@ RUN /poetry/bin/poetry build -f wheel -n \
 
 # Final image
 # TODO try to parametrize the version (maybe cookiecutter) and output it
-FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:1.7.0
+FROM 719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:1.8.0
 
 # Copy python environemnt
 COPY --from=builder /opt/python/versions /opt/python/versions
