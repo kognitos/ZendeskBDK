@@ -70,7 +70,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
         AWS_ROLE_EXTERNAL_ID: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
-    - name: Semantic Release Docker Image
+    - name: Semantic Release
       id: semantic
       uses: cycjimmy/semantic-release-action@v4
       with:
@@ -90,7 +90,8 @@ jobs:
   TerraformDeploy:
     runs-on: ubuntu-latest
     name: Terraform Deploy
-    needs: [ SemanticRelease, Docker ]
+    needs: [ SemanticRelease ]
+    if: needs.SemanticRelease.outputs.new_release_published == 'true'
     outputs:
       lamnda_name: ${{ steps.terraform.outputs.lambda_name }}
       lamnda_arn: ${{ steps.terraform.outputs.lambda_arn }}
@@ -98,7 +99,6 @@ jobs:
     - name: Terraform Deploy
       id: terraform
       uses: ./.github/actions/terraform
-      if: needs.SemanticRelease.outputs.new_release_published == 'true'
       with:
         INIT_CONFIG: -backend-config="region=${{ inputs.AWS_REGION }}" -backend-config="bucket=${{ inputs.TERRAFORM_BACKEND_BUCKET_NAME }}" -backend-config="key=${{ inputs.BOOK_NAME }}/${{ inputs.BOOK_NAME }}_${{ needs.SemanticRelease.outputs.new_release_version }}.tfstate"
         VARIABLES_OVERRIDE: -var book_name=${{ inputs.BOOK_NAME }} -var region=${{ inputs.AWS_REGION }} -var bdk_runtime_version=${{ inputs.BDK_RUNTIME_VERSION }} -var book_version=${{ needs.SemanticRelease.outputs.new_release_version }} -var image_uri=${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}:${{ needs.SemanticRelease.outputs.new_release_version }}
