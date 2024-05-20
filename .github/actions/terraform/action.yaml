@@ -26,24 +26,30 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - uses: hashicorp/setup-terraform@v3
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
 
-    - shell: bash
+    - name: Terraform Init
+      shell: bash
       run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} init ${{ inputs.INIT_CONFIG }}
 
-    - if: inputs.CHECK_BEFORE_APPLY
+    - name: Terraform Validate
+      if: inputs.CHECK_BEFORE_APPLY
       shell: bash
       run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} validate
 
-    - if: inputs.CHECK_BEFORE_APPLY
+    - name: Terraform Plan
+      if: inputs.CHECK_BEFORE_APPLY
       shell: bash
       run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} plan ${{ inputs.VARIABLES_OVERRIDE }}
 
-    - shell: bash
+    - name: Terraform Apply
+      shell: bash
       id: apply
       run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} apply ${{ inputs.VARIABLES_OVERRIDE }} -auto-approve
     
-    - shell: bash
+    - name: Terraform Output
+      shell: bash
       id: output
       run: |
         echo "lambda_name=$(terraform -chdir=${{ inputs.WORKING_DIRECTORY }} output lambda_name)" >> $GITHUB_OUTPUT

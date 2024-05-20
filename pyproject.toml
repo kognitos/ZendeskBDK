@@ -6,6 +6,15 @@ authors = ["Emiliano Lesende <emiliano.lesende@gmail.com>"]
 readme = "README.md"
 packages = [{include = "openweather", from="src"}]
 
+[environment]
+runtime_version = "1.7.0"
+
+[deployment]
+AWS_REGION = "us-west-2"
+AWS_ACCOUNT_ID = "719468614044"
+DOCKER_REGISTRY = "{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com"
+TERRAFORM_BACKEND_BUCKET_NAME = "bdk-terraform-backend"
+
 [[tool.poetry.source]]
 name = "bdk"
 url = "https://kognitos-719468614044.d.codeartifact.us-west-2.amazonaws.com/pypi/bdk/simple/"

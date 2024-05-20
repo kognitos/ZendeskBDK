@@ -3,8 +3,14 @@ branches:
 plugins:
     - "@semantic-release/commit-analyzer"
     - "@semantic-release/release-notes-generator"
-    - "@semantic-release/github"
     - "@semantic-release/changelog"
+    - - "@semantic-release/exec"
+      - prepareCmd: "sh ./.github/scripts/update_pyproject_version.sh"
+    - - "@semantic-release/git"
+      - assets:
+          - pyproject.toml
+        message: "chore(pipeline-triggered): updated pyproject.toml version to ${nextRelease.version} [skip ci]"
+    - "@semantic-release/github"
     - - "@codedependant/semantic-release-docker"
       - dockerTags:
           - 'latest'
@@ -17,4 +23,5 @@ plugins:
         dockerProject: 'kognitos'
         dockerBuildQuiet: false
         dockerArgs:
+            BDK_RUNTIME_VERSION: '{{ env.BDK_RUNTIME_VERSION }}'
             CODE_ARTIFACT_TOKEN: '{{ env.CODE_ARTIFACT_TOKEN }}'

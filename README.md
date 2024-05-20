@@ -36,6 +36,14 @@ curl -sSL https://install.python-poetry.org | python3 -
 
 ## Setting Up the Project
 
+### Clone the Repository
+Ensure you have the necessary permissions to access the repository and clone it to your local machine:
+
+```shell
+git clone <some repository>
+cd bdk
+```
+
 ### Install Dependencies
 Use Poetry to install all required dependencies in an isolated environment. This book is dependent on BDK API, which
 requires authentication prior to being able to use it.
@@ -46,6 +54,13 @@ poetry config http-basic.bdk aws $(aws codeartifact get-authorization-token --do
 
 ```shell
 poetry install
+```
+
+### Activate pre-commit hooks [OPTIONAL]
+To enforce conventional commits format:
+
+```shell
+pre-commit install --hook-type commit-msg
 ```
 
 ## Building the Project

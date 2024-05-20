@@ -13,6 +13,10 @@ provider "aws" {
   region = var.region
 }
 
+locals {
+  formatted_book_version = replace(var.book_version, ".", "_")
+}
+
 resource "aws_iam_role" "book_lambda_role" {
   name = "${var.book_name}_${var.book_version}_lambda_role"
   assume_role_policy = <<EOF
@@ -41,16 +45,16 @@ resource "aws_iam_policy_attachment" "basic_lambda_policy_attachment" {
 resource "aws_lambda_function" "book_lambda" {
   package_type  = "Image"
   image_uri     = var.image_uri
-  function_name = "${var.book_name}_${var.book_version}_lambda"
+  function_name = "${var.book_name}_${local.formatted_book_version}_lambda"
   role          = aws_iam_role.book_lambda_role.arn
   timeout       = var.lambda_timeout
   memory_size   = var.lambda_memory_size
 
   tags = {
-    book_name     = var.book_name
-    book_version  = var.book_version
-    owner         = var.owner
-    runtime       = var.runtime
+    bdk_runtime_version = var.bdk_runtime_version
+    book_name           = var.book_name
+    book_version        = var.book_version
+    owner               = var.owner
   }
 }
 

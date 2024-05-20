@@ -29,6 +29,9 @@ variable "book_name" {
 
 variable "book_version" {
   type = string
-  default = "1_0_0"
+}
+
+variable "bdk_runtime_version" {
+  type = string
 }
 

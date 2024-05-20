@@ -1,0 +1,59 @@
+name: "Setup Credentials"
+
+inputs:
+  AWS_ACCOUNT_ID:
+    required: true
+    type: string
+  AWS_REGION:
+    required: true
+    type: string
+  AWS_ACCESS_KEY_ID:
+    required: true
+    type: string
+  AWS_SECRET_ACCESS_KEY:
+    required: true
+    type: string
+  AWS_ROLE_TO_ASSUME:
+    required: true
+    type: string
+  AWS_ROLE_EXTERNAL_ID:
+    required: true
+    type: string
+
+outputs:
+  CODE_ARTIFACT_TOKEN:
+    value: ${{ steps.codeartifact.outputs.token }}
+  DOCKER_REGISTRY_USER:
+    value: ${{ steps.login-ecr.outputs[format('docker_username_{0}_dkr_ecr_{1}_amazonaws_com', inputs.AWS_ACCOUNT_ID, steps.format_region.outputs.region)] }}
+  DOCKER_REGISTRY_PASSWORD:
+    value: ${{ steps.login-ecr.outputs[format('docker_password_{0}_dkr_ecr_{1}_amazonaws_com', inputs.AWS_ACCOUNT_ID, steps.format_region.outputs.region)] }}
+
+runs:
+  using: "composite"
+  steps:
+  - name: Format Region Variable
+    shell: bash
+    id: format_region
+    run: |
+      region=${{ inputs.AWS_REGION }}
+      formatted_region=$(echo "$region" | tr '-' '_')
+      echo "region=$formatted_region" >> $GITHUB_OUTPUT
+  - name: Configure AWS Credentials
+    uses: aws-actions/configure-aws-credentials@v4
+    with:
+      aws-access-key-id: ${{ inputs.AWS_ACCESS_KEY_ID }}
+      aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
+      aws-region: ${{ inputs.AWS_REGION }}
+      role-to-assume: ${{ inputs.AWS_ROLE_TO_ASSUME }}
+      role-external-id: ${{ inputs.AWS_ROLE_EXTERNAL_ID }}
+      role-skip-session-tagging: true
+  - name: Login to Amazon ECR
+    id: login-ecr
+    uses: aws-actions/amazon-ecr-login@v2
+  - name: Get AWS CodeArtifact Token
+    id: codeartifact
+    shell: bash
+    run: |
+      token=$(aws codeartifact get-authorization-token --domain-owner ${{ inputs.AWS_ACCOUNT_ID }} --domain kognitos --query 'authorizationToken' --output text)
+      echo "::add-mask::$token"
+      echo "token=$token" >> $GITHUB_OUTPUT

@@ -1,0 +1,37 @@
+name: Check and Test Code
+
+on:
+  workflow_call:
+    inputs:
+      AWS_REGION:
+        required: false
+        type: string
+      AWS_ACCOUNT_ID:
+        required: false
+        type: string
+
+jobs:
+  RunChecksAndTests:
+    name: Check and Test Code
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: GitLint
+      uses: ./.github/actions/gitlint
+    - name: Setup Credentials
+      uses: ./.github/actions/setup_credentials
+      id: setup_credentials
+      with:
+        AWS_REGION: ${{ inputs.AWS_REGION }}
+        AWS_ACCOUNT_ID: ${{ inputs.AWS_ACCOUNT_ID }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        AWS_ROLE_EXTERNAL_ID: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
+    - name: Run Checks and Tests
+      uses: ./.github/actions/run_checks_and_tests
+      with:
+        CODE_ARTIFACT_TOKEN: ${{ steps.setup_credentials.outputs.CODE_ARTIFACT_TOKEN }}

@@ -1,0 +1,35 @@
+name: "Setup Python Environment"
+
+inputs:
+  CODE_ARTIFACT_TOKEN:
+    required: true
+    type: string
+  PYTHON_VERSION:
+    required: false
+    type: string
+    default: "3.11"
+  POETRY_VERSION:
+    required: false
+    type: string
+    default: "1.8"
+
+runs:
+  using: "composite"
+  steps:
+  - name: Setup Python ${{ inputs.PYTHON_VERSION }}
+    uses: actions/setup-python@v5
+    with:
+      python-version: ${{ inputs.PYTHON_VERSION }}
+  - name: Install Python Poetry
+    uses: abatilo/actions-poetry@v2
+    with:
+      poetry-version: ${{ inputs.POETRY_VERSION }}
+  - name: Configure Poetry
+    shell: bash
+    run: |
+      python -m poetry config virtualenvs.in-project true
+      python -m poetry config virtualenvs.create true
+      python -m poetry config http-basic.bdk aws ${{ inputs.CODE_ARTIFACT_TOKEN }}
+  - name: Install Dependencies
+    shell: bash
+    run: python -m poetry install
