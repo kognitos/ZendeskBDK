@@ -5,11 +5,11 @@ plugins:
     - "@semantic-release/release-notes-generator"
     - "@semantic-release/changelog"
     - - "@semantic-release/exec"
-      - prepareCmd: "sh ./.github/scripts/update_pyproject_version.sh"
+      - prepareCmd: "sh ./.github/scripts/bump_project_version.sh ${nextRelease.version}"
     - - "@semantic-release/git"
       - assets:
           - pyproject.toml
-        message: "chore(pipeline-triggered): updated pyproject.toml version to ${nextRelease.version} [skip ci]"
+        message: "chore(auto-trigger): bumped project version to ${nextRelease.version} [skip ci]"
     - "@semantic-release/github"
     - - "@codedependant/semantic-release-docker"
       - dockerTags:
