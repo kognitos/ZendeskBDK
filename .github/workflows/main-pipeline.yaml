@@ -43,5 +43,5 @@ jobs:
       AWS_ACCOUNT_ID: ${{ needs.Config.outputs.AWS_ACCOUNT_ID }}
       DOCKER_REGISTRY: ${{ needs.Config.outputs.DOCKER_REGISTRY }}
       TERRAFORM_BACKEND_BUCKET_NAME: ${{ needs.Config.outputs.TERRAFORM_BACKEND_BUCKET_NAME }}
-      FORCE_DEPLOYMENT: ${{ inputs.FORCE_DEPLOYMENT }}
+      FORCE_DEPLOYMENT: ${{ inputs.FORCE_DEPLOYMENT || false }}
     secrets: inherit
