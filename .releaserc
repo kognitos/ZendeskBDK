@@ -11,17 +11,3 @@ plugins:
           - pyproject.toml
         message: "chore(auto-trigger): bumped project version to ${nextRelease.version} [skip ci]"
     - "@semantic-release/github"
-    - - "@codedependant/semantic-release-docker"
-      - dockerTags:
-          - 'latest'
-          - '{{version}}'
-          - '{{major}}-latest'
-          - '{{major}}.{{minor}}'
-        dockerImage: 'book/openweather'  # TODO set this with cookiecutter
-        dockerFile: 'Dockerfile'
-        dockerRegistry: '719468614044.dkr.ecr.us-west-2.amazonaws.com'  # TODO maybe parametrize this with a cookiecutter argument
-        dockerProject: 'kognitos'
-        dockerBuildQuiet: false
-        dockerArgs:
-            BDK_RUNTIME_VERSION: '{{ env.BDK_RUNTIME_VERSION }}'
-            CODE_ARTIFACT_TOKEN: '{{ env.CODE_ARTIFACT_TOKEN }}'
