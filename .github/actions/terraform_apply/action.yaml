@@ -1,4 +1,4 @@
-name: "Terraform Deploy"
+name: "Terraform Apply"
 
 inputs:
   INIT_CONFIG:
@@ -12,10 +12,6 @@ inputs:
     required: false
     type: string
     default: "./terraform"
-  CHECK_BEFORE_APPLY:
-    required: false
-    type: bool
-    default: true
 
 outputs:
   lambda_name:
@@ -33,20 +29,10 @@ runs:
       shell: bash
       run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} init ${{ inputs.INIT_CONFIG }}
 
-    - name: Terraform Validate
-      if: inputs.CHECK_BEFORE_APPLY
-      shell: bash
-      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} validate
-
-    - name: Terraform Plan
-      if: inputs.CHECK_BEFORE_APPLY
-      shell: bash
-      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} plan ${{ inputs.VARIABLES_OVERRIDE }}
-
     - name: Terraform Apply
       shell: bash
       id: apply
-      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} apply ${{ inputs.VARIABLES_OVERRIDE }} -auto-approve
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} apply -input=false ${{ inputs.VARIABLES_OVERRIDE }} -auto-approve
     
     - name: Terraform Output
       shell: bash

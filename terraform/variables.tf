@@ -23,10 +23,6 @@ variable "book_name" {
   type = string
 }
 
- variable "runtime" {
-   type = string
- }
-
 variable "book_version" {
   type = string
 }

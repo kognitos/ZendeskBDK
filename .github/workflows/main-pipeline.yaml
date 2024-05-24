@@ -34,7 +34,6 @@ jobs:
     name: Semantic Release
     uses: ./.github/workflows/rw-semantic-release.yaml
     needs: [ Config, RunChecksAndTests ]
-    if: github.ref == 'refs/heads/main'
     with:
       BOOK_NAME: ${{ needs.Config.outputs.BOOK_NAME }}
       CURRENT_BOOK_VERSION: ${{ needs.Config.outputs.CURRENT_BOOK_VERSION }}

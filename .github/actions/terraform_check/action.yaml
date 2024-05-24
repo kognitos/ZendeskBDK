@@ -1,0 +1,32 @@
+name: "Terraform Check"
+
+inputs:
+  INIT_CONFIG:
+    required: true
+    type: string
+  VARIABLES_OVERRIDE:
+    required: false
+    type: string
+    default: ""
+  WORKING_DIRECTORY:
+    required: false
+    type: string
+    default: "./terraform"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+
+    - name: Terraform Init
+      shell: bash
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} init ${{ inputs.INIT_CONFIG }}
+
+    - name: Terraform Validate
+      shell: bash
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} validate
+
+    - name: Terraform Plan
+      shell: bash
+      run: terraform -chdir=${{ inputs.WORKING_DIRECTORY }} plan -input=false ${{ inputs.VARIABLES_OVERRIDE }}
