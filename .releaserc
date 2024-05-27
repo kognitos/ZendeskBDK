@@ -9,5 +9,6 @@ plugins:
     - - "@semantic-release/git"
       - assets:
           - pyproject.toml
+          - src/openweather/__version__.py
         message: "chore(auto-trigger): bumped project version to ${nextRelease.version} [skip ci]"
     - "@semantic-release/github"

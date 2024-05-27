@@ -12,6 +12,9 @@ on:
       BDK_RUNTIME_VERSION:
         required: true
         type: string
+      BDK_IMAGE_REPO:
+        required: true
+        type: string
       DOCKER_REGISTRY:
         required: true
         type: string
@@ -24,6 +27,10 @@ on:
       AWS_ACCOUNT_ID:
         required: false
         type: string
+      AUTHORS:
+        required: false
+        type: string
+        default: "Kognitos"
       FORCE_DEPLOYMENT:
         required: false
         type: boolean
@@ -114,18 +121,18 @@ jobs:
     - name: Build and Push the Docker Image
       shell: bash
       run: |
-        docker build --build-arg BDK_RUNTIME_VERSION=$BDK_RUNTIME_VERSION --build-arg CODE_ARTIFACT_TOKEN=${{ steps.setup_credentials.outputs.CODE_ARTIFACT_TOKEN }} -t new_book .
-        docker tag new_book $ECR_REPOSITORY:latest
-        docker push $ECR_REPOSITORY:latest
-        docker tag new_book $ECR_REPOSITORY:${{ needs.SemanticRelease.outputs.version }}
-        docker push $ECR_REPOSITORY:${{ needs.SemanticRelease.outputs.version }}
-        docker tag new_book $ECR_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}-latest
-        docker push $ECR_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}-latest
-        docker tag new_book $ECR_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}.${{ needs.SemanticRelease.outputs.minor }}
-        docker push $ECR_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}.${{ needs.SemanticRelease.outputs.minor }}
+        docker build --build-arg BDK_RUNTIME_IMAGE_URI=$BDK_RUNTIME_IMAGE_URI --build-arg CODE_ARTIFACT_TOKEN=${{ steps.setup_credentials.outputs.CODE_ARTIFACT_TOKEN }} -t new_book .
+        docker tag new_book $IMAGE_REPOSITORY:latest
+        docker push $IMAGE_REPOSITORY:latest
+        docker tag new_book $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.version }}
+        docker push $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.version }}
+        docker tag new_book $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}-latest
+        docker push $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}-latest
+        docker tag new_book $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}.${{ needs.SemanticRelease.outputs.minor }}
+        docker push $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}.${{ needs.SemanticRelease.outputs.minor }}
       env:
-        BDK_RUNTIME_VERSION: ${{ inputs.BDK_RUNTIME_VERSION }}
-        ECR_REPOSITORY: ${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}
+        BDK_RUNTIME_IMAGE_URI: ${{ inputs.BDK_IMAGE_REPO }}:${{ inputs.BDK_RUNTIME_VERSION }}
+        IMAGE_REPOSITORY: ${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}
 
   TerraformPrepare:
     name: Terraform Prepare
@@ -149,15 +156,24 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
         AWS_ROLE_EXTERNAL_ID: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
+    - name: Resolve BDK Runtime Version
+      id: runtime_version
+      shell: bash
+      run: |
+        chmod 777 ./.github/scripts/resolve_runtime_version.sh
+        ./.github/scripts/resolve_runtime_version.sh ${{ inputs.BDK_RUNTIME_VERSION }} ${{ inputs.BDK_IMAGE_REPO }}
     - name: Prepare Variables and Config
       id: tf_config
       shell: bash
       run: |
         init_config='-backend-config="region=${{ inputs.AWS_REGION }}" -backend-config="bucket=${{ inputs.TERRAFORM_BACKEND_BUCKET_NAME }}" -backend-config="key=${{ inputs.BOOK_NAME }}/${{ inputs.BOOK_NAME }}_${{ needs.SemanticRelease.outputs.version }}.tfstate"'
-        variables_override='-var book_name=${{ inputs.BOOK_NAME }} -var region=${{ inputs.AWS_REGION }} -var bdk_runtime_version=${{ inputs.BDK_RUNTIME_VERSION }} -var book_version=${{ needs.SemanticRelease.outputs.version }} -var image_uri=${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}:${{ needs.SemanticRelease.outputs.version }}'
+        variables_override=$(cat <<EOF
+        -var book_name=${{ inputs.BOOK_NAME }} -var owner=${{ inputs.AUTHORS }} -var region=${{ inputs.AWS_REGION }} -var bdk_runtime_version=${{ steps.runtime_version.outputs.semver }} -var book_version=${{ needs.SemanticRelease.outputs.version }} -var image_uri=${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}:${{ needs.SemanticRelease.outputs.version }}
+        EOF
+        )
         echo "init_config=$init_config" >> $GITHUB_OUTPUT
         echo "variables_override=$variables_override" >> $GITHUB_OUTPUT
-    - name: Terraform Deploy
+    - name: Terraform Check
       id: terraform
       uses: ./.github/actions/terraform_check
       with:
@@ -188,7 +204,7 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
         AWS_ROLE_EXTERNAL_ID: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
-    - name: Terraform Deploy
+    - name: Terraform Apply
       id: terraform
       uses: ./.github/actions/terraform_apply
       with:

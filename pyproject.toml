@@ -6,14 +6,15 @@ authors = ["Emiliano Lesende <emiliano.lesende@gmail.com>"]
 readme = "README.md"
 packages = [{include = "openweather", from="src"}]
 
-[environment]
-runtime_version = "1.7.0"
-
-[deployment]
+[cloud]
 AWS_REGION = "us-west-2"
 AWS_ACCOUNT_ID = "719468614044"
 DOCKER_REGISTRY = "{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com"
 TERRAFORM_BACKEND_BUCKET_NAME = "bdk-terraform-backend"
+
+[environment]
+bdk_runtime_version = "latest"
+bdk_image_repo = "719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk"
 
 [[tool.poetry.source]]
 name = "bdk"
@@ -37,6 +38,7 @@ black = "^24.2.0"
 pylint = "^3.0.3"
 requests-mock = "^1.11.0"
 pyright = "^1.1.360"
+pre-commit = "^3.7.1"
 
 [tool.poetry.scripts]
 tests = "poetry_scripts:run_tests"
