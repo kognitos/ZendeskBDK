@@ -54,7 +54,7 @@ def interpolate_values(data: dict) -> dict:
                     var_name = match.group()[1:-1].strip()
                     if var_name in fully_processed_vars:
                         data[k] = v[:match.start()] + fully_processed_vars[var_name] + v[match.end():]
-                if len(list(pattern.finditer(data[k]))):
+                if len(list(pattern.finditer(data[k]))) == 0:
                     fully_processed_vars[k] = data[k]
                     del data[k]
 
