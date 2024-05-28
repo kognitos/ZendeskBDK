@@ -15,6 +15,8 @@ provider "aws" {
 
 locals {
   formatted_book_version = replace(var.book_version, ".", "_")
+  owners_no_parenthesis = replace(replace(replace(replace(replace(replace(var.owner, "[", ""), "]", ""), "(", "",), ")", ""), "{", ""), "}", "")
+  formatted_owners = replace(replace(replace(local.owners_no_parenthesis, " <", ": "), ">", ""), ", ", " - ")
 }
 
 resource "aws_iam_role" "book_lambda_role" {
@@ -54,7 +56,7 @@ resource "aws_lambda_function" "book_lambda" {
     bdk_runtime_version = var.bdk_runtime_version
     book_name           = var.book_name
     book_version        = var.book_version
-    owner               = var.owner
+    owner               = local.formatted_owners
   }
 }
 

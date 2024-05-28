@@ -46,17 +46,13 @@ def interpolate_values(data: dict) -> dict:
                 raise KeyError(f"The following key does not comply with naming restrictions: {k}")
 
             matches = list(pattern.finditer(v))
-            if len(matches) == 0:
-                fully_processed_vars[k] = v
+            for match in matches:
+                var_name = match.group()[1:-1].strip()
+                if var_name in fully_processed_vars:
+                    data[k] = v[:match.start()] + fully_processed_vars[var_name] + v[match.end():]
+            if len(list(pattern.finditer(data[k]))) == 0:
+                fully_processed_vars[k] = data[k]
                 del data[k]
-            else:
-                for match in matches:
-                    var_name = match.group()[1:-1].strip()
-                    if var_name in fully_processed_vars:
-                        data[k] = v[:match.start()] + fully_processed_vars[var_name] + v[match.end():]
-                if len(list(pattern.finditer(data[k]))) == 0:
-                    fully_processed_vars[k] = data[k]
-                    del data[k]
 
         if len(data) == 0:
             print("All variables processed!")
