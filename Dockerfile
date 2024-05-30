@@ -52,7 +52,6 @@ RUN /poetry/bin/poetry build -f wheel -n \
     && pip install --no-deps dist/*.whl
 
 # Final image
-# TODO try to parametrize the version (maybe cookiecutter) and output it
 FROM ${BDK_RUNTIME_IMAGE_URI}
 
 # Copy python environemnt

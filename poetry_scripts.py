@@ -6,7 +6,7 @@ def run_cmd(cmd):
 
 def run_tests():
     # generate coverage report
-    run_cmd("poetry run pytest -vv")
+    run_cmd("poetry run pytest -vv --junit-xml=test-results.xml")
 
 def run_format():
     # format all files in-place
