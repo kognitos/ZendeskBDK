@@ -2,13 +2,13 @@
 
 [[package]]
 name = "astroid"
-version = "3.1.0"
+version = "3.2.2"
 description = "An abstract syntax tree for Python with inference support."
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "astroid-3.1.0-py3-none-any.whl", hash = "sha256:951798f922990137ac090c53af473db7ab4e70c770e6d7fae0cec59f74411819"},
-    {file = "astroid-3.1.0.tar.gz", hash = "sha256:ac248253bfa4bd924a0de213707e7ebeeb3138abeb48d798784ead1e56d419d4"},
+    {file = "astroid-3.2.2-py3-none-any.whl", hash = "sha256:e8a0083b4bb28fcffb6207a3bfc9e5d0a68be951dd7e336d5dcf639c682388c0"},
+    {file = "astroid-3.2.2.tar.gz", hash = "sha256:8ead48e31b92b2e217b6c9733a21afafe479d52d6e164dd25fb1a770c7c3cf94"},
 ]
 
 [[package]]
@@ -306,18 +306,34 @@ colors = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "kognitos-bdk-api"
-version = "0.13.3"
+version = "0.14.0"
 description = "Kognitos Book Development Kit"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_api-0.13.3-py3-none-any.whl", hash = "sha256:6ccb5cf5698ac06857b89f74b955e49d15d470cb675bde2374d06aacb567fa11"},
-    {file = "kognitos_bdk_api-0.13.3.tar.gz", hash = "sha256:65d267fcd2195207a5bfec656591e62843cbc4be2d1dc3dbfad52332e0fae7be"},
+    {file = "kognitos_bdk_api-0.14.0-py3-none-any.whl", hash = "sha256:be81632f2e49180989fed882ad6a15c17bf3b95038c16ca06fdfbb135b7729ce"},
+    {file = "kognitos_bdk_api-0.14.0.tar.gz", hash = "sha256:49c5b4c7f58adab1ae56dbda8fed30ba778fcd5fcdde4879a3075007f641902f"},
 ]
 
 [package.dependencies]
 docstring-parser = ">=0.15,<0.16"
-typeguard = ">=4.1.5,<5.0.0"
+kognitos-bdk-klang = ">=1.0.0,<2.0.0"
+
+[package.source]
+type = "legacy"
+url = "https://kognitos-719468614044.d.codeartifact.us-west-2.amazonaws.com/pypi/bdk/simple"
+reference = "bdk"
+
+[[package]]
+name = "kognitos-bdk-klang"
+version = "1.0.3"
+description = ""
+optional = false
+python-versions = ">=3.9,<4.0"
+files = [
+    {file = "kognitos_bdk_klang-1.0.3-py3-none-any.whl", hash = "sha256:e6b5827e0101d6fa09f0cca021d29154d3ca702ade387f77eee58d9f21dccda1"},
+    {file = "kognitos_bdk_klang-1.0.3.tar.gz", hash = "sha256:46c54ee847d4f03eb07222626a2a7504c7f40ad505e89f8535a25f34c1364ac3"},
+]
 
 [package.source]
 type = "legacy"
@@ -326,17 +342,18 @@ reference = "bdk"
 
 [[package]]
 name = "kognitos-bdk-linter"
-version = "1.1.1"
+version = "1.2.1"
 description = "Kognitos BDK Linter"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_linter-1.1.1-py3-none-any.whl", hash = "sha256:d030d058746541eb5156be5b2d72fcc673b2e032a341281387b19b3152bd17ed"},
-    {file = "kognitos_bdk_linter-1.1.1.tar.gz", hash = "sha256:c4a0e6879251f78d9fa7d43cbb6d683de11d927a0b59e004b245f00e695f1882"},
+    {file = "kognitos_bdk_linter-1.2.1-py3-none-any.whl", hash = "sha256:ff60671ed76bf1f76cd7c327f85636781fc82c484d3ad4d2da21568f91dff87e"},
+    {file = "kognitos_bdk_linter-1.2.1.tar.gz", hash = "sha256:fd8c42da6595a7910782069bfe89bd6960831e11bf9fa39485f70715b72f4290"},
 ]
 
 [package.dependencies]
-kognitos-bdk-api = ">=0.13,<0.14"
+kognitos-bdk-api = ">=0.14,<0.15"
+kognitos-bdk-klang = ">=1.0,<2.0"
 pylint = ">=3.0.3,<4.0.0"
 typing-utils = ">=0.1.0,<0.2.0"
 
@@ -415,17 +432,14 @@ files = [
 
 [[package]]
 name = "nodeenv"
-version = "1.8.0"
+version = "1.9.0"
 description = "Node.js virtual environment builder"
 optional = false
-python-versions = ">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*"
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 files = [
-    {file = "nodeenv-1.8.0-py2.py3-none-any.whl", hash = "sha256:df865724bb3c3adc86b3876fa209771517b0cfe596beff01a92700e0e8be4cec"},
-    {file = "nodeenv-1.8.0.tar.gz", hash = "sha256:d51e0c37e64fbf47d017feac3145cdbb58836d7eee8c6f6d3b6880c5456227d2"},
+    {file = "nodeenv-1.9.0-py2.py3-none-any.whl", hash = "sha256:508ecec98f9f3330b636d4448c0f1a56fc68017c68f1e7857ebc52acf0eb879a"},
+    {file = "nodeenv-1.9.0.tar.gz", hash = "sha256:07f144e90dae547bf0d4ee8da0ee42664a42a04e02ed68e06324348dafe4bdb1"},
 ]
-
-[package.dependencies]
-setuptools = "*"
 
 [[package]]
 name = "packaging"
@@ -451,13 +465,13 @@ files = [
 
 [[package]]
 name = "platformdirs"
-version = "4.2.1"
+version = "4.2.2"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "platformdirs-4.2.1-py3-none-any.whl", hash = "sha256:17d5a1161b3fd67b390023cb2d3b026bbd40abde6fdb052dfbd3a29c3ba22ee1"},
-    {file = "platformdirs-4.2.1.tar.gz", hash = "sha256:031cd18d4ec63ec53e82dceaac0417d218a6863f7745dfcc9efe7793b7039bdf"},
+    {file = "platformdirs-4.2.2-py3-none-any.whl", hash = "sha256:2d7a1657e36a80ea911db832a8a6ece5ee53d8de21edd5cc5879af6530b1bfee"},
+    {file = "platformdirs-4.2.2.tar.gz", hash = "sha256:38b7b51f512eed9e84a22788b4bce1de17c0adb134d6becb09836e37d8654cd3"},
 ]
 
 [package.extras]
@@ -500,17 +514,17 @@ virtualenv = ">=20.10.0"
 
 [[package]]
 name = "pylint"
-version = "3.1.0"
+version = "3.2.2"
 description = "python code static checker"
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "pylint-3.1.0-py3-none-any.whl", hash = "sha256:507a5b60953874766d8a366e8e8c7af63e058b26345cfcb5f91f89d987fd6b74"},
-    {file = "pylint-3.1.0.tar.gz", hash = "sha256:6a69beb4a6f63debebaab0a3477ecd0f559aa726af4954fc948c51f7a2549e23"},
+    {file = "pylint-3.2.2-py3-none-any.whl", hash = "sha256:3f8788ab20bb8383e06dd2233e50f8e08949cfd9574804564803441a4946eab4"},
+    {file = "pylint-3.2.2.tar.gz", hash = "sha256:d068ca1dfd735fb92a07d33cb8f288adc0f6bc1287a139ca2425366f7cbe38f8"},
 ]
 
 [package.dependencies]
-astroid = ">=3.1.0,<=3.2.0-dev0"
+astroid = ">=3.2.2,<=3.3.0-dev0"
 colorama = {version = ">=0.4.5", markers = "sys_platform == \"win32\""}
 dill = [
     {version = ">=0.3.7", markers = "python_version >= \"3.12\""},
@@ -527,13 +541,13 @@ testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pyright"
-version = "1.1.362"
+version = "1.1.365"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.362-py3-none-any.whl", hash = "sha256:969957cff45154d8a45a4ab1dae5bdc8223d8bd3c64654fa608ab3194dfff319"},
-    {file = "pyright-1.1.362.tar.gz", hash = "sha256:6a477e448d4a07a6a0eab58b2a15a1bbed031eb3169fa809edee79cca168d83a"},
+    {file = "pyright-1.1.365-py3-none-any.whl", hash = "sha256:194d767a039f9034376b7ec8423841880ac6efdd061f3e283b4ad9fcd484a659"},
+    {file = "pyright-1.1.365.tar.gz", hash = "sha256:d7e69000939aed4bf823707086c30c84c005bdd39fac2dfb370f0e5be16c2ef2"},
 ]
 
 [package.dependencies]
@@ -625,13 +639,13 @@ files = [
 
 [[package]]
 name = "requests"
-version = "2.31.0"
+version = "2.32.3"
 description = "Python HTTP for Humans."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "requests-2.31.0-py3-none-any.whl", hash = "sha256:58cd2187c01e70e6e26505bca751777aa9f2ee0b7f4300988b709f44e013003f"},
-    {file = "requests-2.31.0.tar.gz", hash = "sha256:942c5a758f98d790eaed1a29cb6eefc7ffb0d1cf7af05c3d2791656dbd6ad1e1"},
+    {file = "requests-2.32.3-py3-none-any.whl", hash = "sha256:70761cfe03c773ceb22aa2f671b4757976145175cdfca038c02654d061d6dcc6"},
+    {file = "requests-2.32.3.tar.gz", hash = "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760"},
 ]
 
 [package.dependencies]
@@ -662,22 +676,6 @@ requests = ">=2.22,<3"
 fixture = ["fixtures"]
 
 [[package]]
-name = "setuptools"
-version = "69.5.1"
-description = "Easily download, build, install, upgrade, and uninstall Python packages"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "setuptools-69.5.1-py3-none-any.whl", hash = "sha256:c636ac361bc47580504644275c9ad802c50415c7522212252c033bd15f301f32"},
-    {file = "setuptools-69.5.1.tar.gz", hash = "sha256:6c1fccdac05a97e598fb0ae3bbed5904ccb317337a51139dcd51453611bbb987"},
-]
-
-[package.extras]
-docs = ["furo", "jaraco.packaging (>=9.3)", "jaraco.tidelift (>=1.4)", "pygments-github-lexers (==0.0.5)", "rst.linker (>=1.9)", "sphinx (>=3.5)", "sphinx-favicon", "sphinx-inline-tabs", "sphinx-lint", "sphinx-notfound-page (>=1,<2)", "sphinx-reredirects", "sphinxcontrib-towncrier"]
-testing = ["build[virtualenv]", "filelock (>=3.4.0)", "importlib-metadata", "ini2toml[lite] (>=0.9)", "jaraco.develop (>=7.21)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "mypy (==1.9)", "packaging (>=23.2)", "pip (>=19.1)", "pytest (>=6,!=8.1.1)", "pytest-checkdocs (>=2.4)", "pytest-cov", "pytest-enabler (>=2.2)", "pytest-home (>=0.5)", "pytest-mypy", "pytest-perf", "pytest-ruff (>=0.2.1)", "pytest-timeout", "pytest-xdist (>=3)", "tomli", "tomli-w (>=1.0.0)", "virtualenv (>=13.0.0)", "wheel"]
-testing-integration = ["build[virtualenv] (>=1.0.3)", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "packaging (>=23.2)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
-
-[[package]]
 name = "tomlkit"
 version = "0.12.5"
 description = "Style preserving TOML library"
@@ -689,32 +687,14 @@ files = [
 ]
 
 [[package]]
-name = "typeguard"
-version = "4.2.1"
-description = "Run-time type checker for Python"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "typeguard-4.2.1-py3-none-any.whl", hash = "sha256:7da3bd46e61f03e0852f8d251dcbdc2a336aa495d7daff01e092b55327796eb8"},
-    {file = "typeguard-4.2.1.tar.gz", hash = "sha256:c556a1b95948230510070ca53fa0341fb0964611bd05d598d87fb52115d65fee"},
-]
-
-[package.dependencies]
-typing-extensions = {version = ">=4.10.0", markers = "python_version < \"3.13\""}
-
-[package.extras]
-doc = ["Sphinx (>=7)", "packaging", "sphinx-autodoc-typehints (>=1.2.0)"]
-test = ["coverage[toml] (>=7)", "mypy (>=1.2.0)", "pytest (>=7)"]
-
-[[package]]
 name = "typing-extensions"
-version = "4.11.0"
+version = "4.12.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "typing_extensions-4.11.0-py3-none-any.whl", hash = "sha256:c1f94d72897edaf4ce775bb7558d5b79d8126906a14ea5ed1635921406c0387a"},
-    {file = "typing_extensions-4.11.0.tar.gz", hash = "sha256:83f085bd5ca59c80295fc2a82ab5dac679cbe02b9f33f7d83af68e241bea51b0"},
+    {file = "typing_extensions-4.12.0-py3-none-any.whl", hash = "sha256:b349c66bea9016ac22978d800cfff206d5f9816951f12a7d0ec5578b0a819594"},
+    {file = "typing_extensions-4.12.0.tar.gz", hash = "sha256:8cbcdc8606ebcb0d95453ad7dc5065e6237b6aa230a31e81d0f440c30fed5fd8"},
 ]
 
 [[package]]
@@ -771,4 +751,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<4.0"
-content-hash = "333c9222c2d0a0ccbc4f1d036d9bfb064ca991d5588ec71a2f7949c07013ddbd"
+content-hash = "d1a73cec13e2db2d25558b2a1199309b2059bfb76309d89a5cdb7041ec8c311f"

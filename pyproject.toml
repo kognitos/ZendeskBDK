@@ -27,8 +27,9 @@ pythonpath = ["src"]
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
 requests = "^2.31.0"
-kognitos-bdk-api = {version = "^0.13", source = "bdk"}
-kognitos-bdk-linter = {version = "^1.1", source = "bdk"}
+kognitos-bdk-api = {version = "^0.14", source = "bdk"}
+kognitos-bdk-linter = {version = "^1.2", source = "bdk"}
+kognitos-bdk-klang = {version = "^1.0", source = "bdk"}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.4"
