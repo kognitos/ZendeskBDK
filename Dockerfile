@@ -17,6 +17,12 @@ ENV POETRY_VERSION=1.8 \
     PIP_DEFAULT_TIMEOUT=100 \
     POETRY_NO_INTERACTION=1
 
+# Find utils don't come pre-installed on Amazon Linux 2023 which is the base
+# imag for BDK runtime 
+RUN microdnf update -y \
+    && microdnf install -y findutils \
+    && microdnf clean all
+
 # Install poetry
 RUN python3 -m venv /poetry \
     && /poetry/bin/pip install -U pip setuptools \
