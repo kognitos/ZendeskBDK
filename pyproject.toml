@@ -13,7 +13,7 @@ DOCKER_REGISTRY = "{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com"
 TERRAFORM_BACKEND_BUCKET_NAME = "bdk-terraform-backend"
 
 [environment]
-bdk_runtime_version = "1.10.1"
+bdk_runtime_version = "1.10.3"
 bdk_image_repo = "719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk"
 
 [[tool.poetry.source]]
@@ -30,6 +30,7 @@ requests = "^2.31.0"
 kognitos-bdk-api = {version = "^0.14", source = "bdk"}
 kognitos-bdk-linter = {version = "^1.2", source = "bdk"}
 kognitos-bdk-klang = {version = "^1.0", source = "bdk"}
+kognitos-bdk-poetry-plugin = {path = "../../bdk-poetry-plugin", develop = true}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.4"
