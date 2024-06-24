@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "openweather"
-version = "1.2.9"
+version = "1.2.10"
 description = "OpenWeather book enables users to fetch real-time temperature data for any city worldwide via the OpenWeather API."
 authors = ["Emiliano Lesende <emiliano.lesende@gmail.com>"]
 readme = "README.md"
