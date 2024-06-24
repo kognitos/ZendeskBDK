@@ -57,13 +57,13 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "certifi"
-version = "2024.2.2"
+version = "2024.6.2"
 description = "Python package for providing Mozilla's CA Bundle."
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "certifi-2024.2.2-py3-none-any.whl", hash = "sha256:dc383c07b76109f368f6106eee2b593b04a011ea4d55f652c6ca24a754d1cdd1"},
-    {file = "certifi-2024.2.2.tar.gz", hash = "sha256:0569859f95fc761b18b45ef421b1290a0f65f147e92a1e5eb3e635f9a5e4e66f"},
+    {file = "certifi-2024.6.2-py3-none-any.whl", hash = "sha256:ddc6c8ce995e6987e7faf5e3f1b02b302836a0e5d98ece18392cb1a36c72ad56"},
+    {file = "certifi-2024.6.2.tar.gz", hash = "sha256:3cd43f1c6fa7dedc5899d69d3ad0398fd018ad1a17fba83ddaf78aa46c747516"},
 ]
 
 [[package]]
@@ -240,18 +240,18 @@ files = [
 
 [[package]]
 name = "filelock"
-version = "3.14.0"
+version = "3.15.4"
 description = "A platform independent file lock."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "filelock-3.14.0-py3-none-any.whl", hash = "sha256:43339835842f110ca7ae60f1e1c160714c5a6afd15a2873419ab185334975c0f"},
-    {file = "filelock-3.14.0.tar.gz", hash = "sha256:6ea72da3be9b8c82afd3edcf99f2fffbb5076335a5ae4d03248bb5b6c3eae78a"},
+    {file = "filelock-3.15.4-py3-none-any.whl", hash = "sha256:6ca1fffae96225dab4c6eaf1c4f4f28cd2568d3ec2a44e15a08520504de468e7"},
+    {file = "filelock-3.15.4.tar.gz", hash = "sha256:2207938cbc1844345cb01a5a95524dae30f0ce089eba5b00378295a17e3e90cb"},
 ]
 
 [package.extras]
 docs = ["furo (>=2023.9.10)", "sphinx (>=7.2.6)", "sphinx-autodoc-typehints (>=1.25.2)"]
-testing = ["covdefaults (>=2.3)", "coverage (>=7.3.2)", "diff-cover (>=8.0.1)", "pytest (>=7.4.3)", "pytest-cov (>=4.1)", "pytest-mock (>=3.12)", "pytest-timeout (>=2.2)"]
+testing = ["covdefaults (>=2.3)", "coverage (>=7.3.2)", "diff-cover (>=8.0.1)", "pytest (>=7.4.3)", "pytest-asyncio (>=0.21)", "pytest-cov (>=4.1)", "pytest-mock (>=3.12)", "pytest-timeout (>=2.2)", "virtualenv (>=20.26.2)"]
 typing = ["typing-extensions (>=4.8)"]
 
 [[package]]
@@ -306,18 +306,18 @@ colors = ["colorama (>=0.4.6)"]
 
 [[package]]
 name = "kognitos-bdk-api"
-version = "0.14.0"
+version = "0.14.8"
 description = "Kognitos Book Development Kit"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_api-0.14.0-py3-none-any.whl", hash = "sha256:be81632f2e49180989fed882ad6a15c17bf3b95038c16ca06fdfbb135b7729ce"},
-    {file = "kognitos_bdk_api-0.14.0.tar.gz", hash = "sha256:49c5b4c7f58adab1ae56dbda8fed30ba778fcd5fcdde4879a3075007f641902f"},
+    {file = "kognitos_bdk_api-0.14.8-py3-none-any.whl", hash = "sha256:cc11cf7366d2a72239e0eeadcc49a658791823380bab3d6fb41d69c30234165f"},
+    {file = "kognitos_bdk_api-0.14.8.tar.gz", hash = "sha256:79fe9ebef58c0f9ec5675e06c92ffbac3fd9e7946ec6209281d11269c2da8cb7"},
 ]
 
 [package.dependencies]
 docstring-parser = ">=0.15,<0.16"
-kognitos-bdk-klang = ">=1.0.0,<2.0.0"
+kognitos-bdk-klang = ">=1.0.10,<2.0.0"
 
 [package.source]
 type = "legacy"
@@ -326,13 +326,13 @@ reference = "bdk"
 
 [[package]]
 name = "kognitos-bdk-klang"
-version = "1.0.3"
+version = "1.0.10"
 description = ""
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "kognitos_bdk_klang-1.0.3-py3-none-any.whl", hash = "sha256:e6b5827e0101d6fa09f0cca021d29154d3ca702ade387f77eee58d9f21dccda1"},
-    {file = "kognitos_bdk_klang-1.0.3.tar.gz", hash = "sha256:46c54ee847d4f03eb07222626a2a7504c7f40ad505e89f8535a25f34c1364ac3"},
+    {file = "kognitos_bdk_klang-1.0.10-py3-none-any.whl", hash = "sha256:39e05b793711ca74214868bcda915c2af5e45ca806ae0d66d48be17fcf59d051"},
+    {file = "kognitos_bdk_klang-1.0.10.tar.gz", hash = "sha256:393b5ecf0949ac6b647f63ff5ceb0fdb8182f93e9944c91b45b1e7862d2f6d3e"},
 ]
 
 [package.source]
@@ -342,20 +342,19 @@ reference = "bdk"
 
 [[package]]
 name = "kognitos-bdk-linter"
-version = "1.2.1"
+version = "1.2.8"
 description = "Kognitos BDK Linter"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_linter-1.2.1-py3-none-any.whl", hash = "sha256:ff60671ed76bf1f76cd7c327f85636781fc82c484d3ad4d2da21568f91dff87e"},
-    {file = "kognitos_bdk_linter-1.2.1.tar.gz", hash = "sha256:fd8c42da6595a7910782069bfe89bd6960831e11bf9fa39485f70715b72f4290"},
+    {file = "kognitos_bdk_linter-1.2.8-py3-none-any.whl", hash = "sha256:adc8efdf8295a8a48cffacf4b7beb0df0e9d14619bd2bcd0dc169d300653f572"},
+    {file = "kognitos_bdk_linter-1.2.8.tar.gz", hash = "sha256:d75904edfee202820576aa4064505a696290316ce100e589ef25ee44847695be"},
 ]
 
 [package.dependencies]
-kognitos-bdk-api = ">=0.14,<0.15"
-kognitos-bdk-klang = ">=1.0,<2.0"
+kognitos-bdk-api = ">=0.14.7,<0.15.0"
+kognitos-bdk-klang = ">=1.0.10,<2.0.0"
 pylint = ">=3.0.3,<4.0.0"
-typing-utils = ">=0.1.0,<0.2.0"
 
 [package.source]
 type = "legacy"
@@ -432,24 +431,24 @@ files = [
 
 [[package]]
 name = "nodeenv"
-version = "1.9.0"
+version = "1.9.1"
 description = "Node.js virtual environment builder"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,!=3.5.*,!=3.6.*,>=2.7"
 files = [
-    {file = "nodeenv-1.9.0-py2.py3-none-any.whl", hash = "sha256:508ecec98f9f3330b636d4448c0f1a56fc68017c68f1e7857ebc52acf0eb879a"},
-    {file = "nodeenv-1.9.0.tar.gz", hash = "sha256:07f144e90dae547bf0d4ee8da0ee42664a42a04e02ed68e06324348dafe4bdb1"},
+    {file = "nodeenv-1.9.1-py2.py3-none-any.whl", hash = "sha256:ba11c9782d29c27c70ffbdda2d7415098754709be8a7056d79a737cd901155c9"},
+    {file = "nodeenv-1.9.1.tar.gz", hash = "sha256:6ec12890a2dab7946721edbfbcd91f3319c6ccc9aec47be7c7e6b7011ee6645f"},
 ]
 
 [[package]]
 name = "packaging"
-version = "24.0"
+version = "24.1"
 description = "Core utilities for Python packages"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "packaging-24.0-py3-none-any.whl", hash = "sha256:2ddfb553fdf02fb784c234c7ba6ccc288296ceabec964ad2eae3777778130bc5"},
-    {file = "packaging-24.0.tar.gz", hash = "sha256:eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"},
+    {file = "packaging-24.1-py3-none-any.whl", hash = "sha256:5b8f2217dbdbd2f7f384c41c628544e6d52f2d0f53c6d0c3ea61aa5d1d7ff124"},
+    {file = "packaging-24.1.tar.gz", hash = "sha256:026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002"},
 ]
 
 [[package]]
@@ -514,13 +513,13 @@ virtualenv = ">=20.10.0"
 
 [[package]]
 name = "pylint"
-version = "3.2.2"
+version = "3.2.3"
 description = "python code static checker"
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "pylint-3.2.2-py3-none-any.whl", hash = "sha256:3f8788ab20bb8383e06dd2233e50f8e08949cfd9574804564803441a4946eab4"},
-    {file = "pylint-3.2.2.tar.gz", hash = "sha256:d068ca1dfd735fb92a07d33cb8f288adc0f6bc1287a139ca2425366f7cbe38f8"},
+    {file = "pylint-3.2.3-py3-none-any.whl", hash = "sha256:b3d7d2708a3e04b4679e02d99e72329a8b7ee8afb8d04110682278781f889fa8"},
+    {file = "pylint-3.2.3.tar.gz", hash = "sha256:02f6c562b215582386068d52a30f520d84fdbcf2a95fc7e855b816060d048b60"},
 ]
 
 [package.dependencies]
@@ -541,13 +540,13 @@ testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pyright"
-version = "1.1.365"
+version = "1.1.368"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.365-py3-none-any.whl", hash = "sha256:194d767a039f9034376b7ec8423841880ac6efdd061f3e283b4ad9fcd484a659"},
-    {file = "pyright-1.1.365.tar.gz", hash = "sha256:d7e69000939aed4bf823707086c30c84c005bdd39fac2dfb370f0e5be16c2ef2"},
+    {file = "pyright-1.1.368-py3-none-any.whl", hash = "sha256:4a86e34b61c755b43b367af7fbf927fc6466fff6b81a9dcea07d42416c640af3"},
+    {file = "pyright-1.1.368.tar.gz", hash = "sha256:9b2aa48142d9d9fc9a6aedff743c76873cc4e615f3297cdbf893d5793f75b306"},
 ]
 
 [package.dependencies]
@@ -688,38 +687,24 @@ files = [
 
 [[package]]
 name = "typing-extensions"
-version = "4.12.0"
+version = "4.12.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "typing_extensions-4.12.0-py3-none-any.whl", hash = "sha256:b349c66bea9016ac22978d800cfff206d5f9816951f12a7d0ec5578b0a819594"},
-    {file = "typing_extensions-4.12.0.tar.gz", hash = "sha256:8cbcdc8606ebcb0d95453ad7dc5065e6237b6aa230a31e81d0f440c30fed5fd8"},
+    {file = "typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d"},
+    {file = "typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"},
 ]
-
-[[package]]
-name = "typing-utils"
-version = "0.1.0"
-description = "utils to inspect Python type annotations"
-optional = false
-python-versions = ">=3.6.1"
-files = [
-    {file = "typing_utils-0.1.0-py3-none-any.whl", hash = "sha256:6bd26f3d38a5dd526ca3a59f0a451ccb59bcee9dc829c872dd6c0aae4ec8bbef"},
-    {file = "typing_utils-0.1.0.tar.gz", hash = "sha256:8ff6b6705414b82575ad5ae0925ac414a9650fb8c5718289b1327dec61252f65"},
-]
-
-[package.extras]
-test = ["pytest"]
 
 [[package]]
 name = "urllib3"
-version = "2.2.1"
+version = "2.2.2"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "urllib3-2.2.1-py3-none-any.whl", hash = "sha256:450b20ec296a467077128bff42b73080516e71b56ff59a60a02bef2232c4fa9d"},
-    {file = "urllib3-2.2.1.tar.gz", hash = "sha256:d0570876c61ab9e520d776c38acbbb5b05a776d3f9ff98a5c8fd5162a444cf19"},
+    {file = "urllib3-2.2.2-py3-none-any.whl", hash = "sha256:a448b2f64d686155468037e1ace9f2d2199776e17f0a46610480d311f73e3472"},
+    {file = "urllib3-2.2.2.tar.gz", hash = "sha256:dd505485549a7a552833da5e6063639d0d177c04f23bc3864e41e5dc5f612168"},
 ]
 
 [package.extras]
@@ -730,13 +715,13 @@ zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
 name = "virtualenv"
-version = "20.26.2"
+version = "20.26.3"
 description = "Virtual Python Environment builder"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "virtualenv-20.26.2-py3-none-any.whl", hash = "sha256:a624db5e94f01ad993d476b9ee5346fdf7b9de43ccaee0e0197012dc838a0e9b"},
-    {file = "virtualenv-20.26.2.tar.gz", hash = "sha256:82bf0f4eebbb78d36ddaee0283d43fe5736b53880b8a8cdcd37390a07ac3741c"},
+    {file = "virtualenv-20.26.3-py3-none-any.whl", hash = "sha256:8cc4a31139e796e9a7de2cd5cf2489de1217193116a8fd42328f1bd65f434589"},
+    {file = "virtualenv-20.26.3.tar.gz", hash = "sha256:4c43a2a236279d9ea36a0d76f98d84bd6ca94ac4e0f4a3b9d46d05e10fea542a"},
 ]
 
 [package.dependencies]
