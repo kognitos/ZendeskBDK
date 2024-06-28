@@ -59,10 +59,12 @@ resource "aws_lambda_function" "book_lambda" {
     owner               = local.formatted_owners
   }
 
-  environment = {
+  environment {
+    variables = {
       BDK_SERVICE_NAME = "kognitos.book.${var.book_name}"
       BDK_SERVICE_VERSION = var.book_version
       BDK_DEPLOYMENT_ENVIRONMENT = "main"
+    }
   }
 }
 
