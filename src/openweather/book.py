@@ -102,6 +102,7 @@ class OpenWeatherBook:
         """
         complete_url = f"{self._base_url}?appid={self._api_key}&q={quote(city.to_string())}&units={unit.to_string() if unit else 'standard'}"
         try:
+            logger.info("retrieving temperature for %s", city.to_string())
             response = requests.get(complete_url, timeout=self._timeout)
             weather_data = response.json()
             if weather_data["cod"] == 200:
