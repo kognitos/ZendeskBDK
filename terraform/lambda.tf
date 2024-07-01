@@ -38,10 +38,37 @@ resource "aws_iam_role" "book_lambda_role" {
 EOF
 }
 
+resource "aws_iam_policy" "secrets_manager_policy" {
+  name        = "${var.book_name}_${var.book_version}_secrets_manager_policy"
+  description = "Allow Lambda function to query secret 'infrastructure/datadog_api_key' from Secrets Manager"
+  policy      = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "secretsmanager:GetSecretValue"
+      ],
+      "Resource": "arn:aws:secretsmanager:${var.region}:${data.aws_caller_identity.current.account_id}:secret:infrastructure/datadog_api_key*"
+    }
+  ]
+}
+EOF
+}
+
+data "aws_caller_identity" "current" {}
+
 resource "aws_iam_policy_attachment" "basic_lambda_policy_attachment" {
   name       = "${var.book_name}_${var.book_version}_lambda_role_policy_attachment"
   roles      = [aws_iam_role.book_lambda_role.name]
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+resource "aws_iam_policy_attachment" "secrets_manager_policy_attachment" {
+  name       = "${var.book_name}_${var.book_version}_secrets_manager_policy_attachment"
+  roles      = [aws_iam_role.book_lambda_role.name]
+  policy_arn = aws_iam_policy.secrets_manager_policy.arn
 }
 
 resource "aws_lambda_function" "book_lambda" {
