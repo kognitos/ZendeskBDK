@@ -10,9 +10,9 @@ def run_tests():
 
 def run_format():
     # format all files in-place
-    run_cmd("poetry run black tests")
+    run_cmd("poetry run black src tests")
     # organize imports
-    run_cmd("poetry run isort tests")
+    run_cmd("poetry run isort src tests")
 
 def run_lint():
     # lint source and test files

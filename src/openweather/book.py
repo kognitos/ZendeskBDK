@@ -1,13 +1,14 @@
 """
 A short description of the project.
 """
+
 import logging
 from typing import Optional
 from urllib.parse import quote
 
 import requests
-from kognitos.bdk.decorators import procedure, book, connect, config
 from kognitos.bdk.api import NounPhrase
+from kognitos.bdk.decorators import book, config, connect, procedure
 from requests import HTTPError
 
 OPENWEATHER_BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -16,6 +17,7 @@ DEFAULT_TIMEOUT = 30
 # Configure logger
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 @book(name="Open Weather", icon="data/icon.svg")
 class OpenWeatherBook:
@@ -78,7 +80,9 @@ class OpenWeatherBook:
         self._api_key = api_key
 
     @procedure("to get the (current temperature) at a city")
-    def current_temperature(self, city: NounPhrase, unit: Optional[NounPhrase] = NounPhrase("standard")) -> float:
+    def current_temperature(
+        self, city: NounPhrase, unit: Optional[NounPhrase] = NounPhrase("standard")
+    ) -> float:
         """Fetch the current temperature for a specified city.
 
         Input Concepts:
@@ -110,9 +114,11 @@ class OpenWeatherBook:
                 return temperature
 
             logger.error(
-                "error fetching data for %s, response Code: %s", city.to_string(), weather_data['cod']
+                "error fetching data for %s, response Code: %s",
+                city.to_string(),
+                weather_data["cod"],
             )
-            raise HTTPError(weather_data['message'])
+            raise HTTPError(weather_data["message"])
         except requests.Timeout:
             logger.error("request timed out")
             raise
