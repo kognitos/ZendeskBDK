@@ -1,0 +1,121 @@
+interactions:
+- request:
+    body: '{"SecretId": "bdk/test/openweather"}'
+    headers:
+      Content-Length:
+      - '36'
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24veC1hbXotanNvbi0xLjE=
+      User-Agent:
+      - !!binary |
+        Qm90bzMvMS4zNC4xMzkgbWQvQm90b2NvcmUjMS4zNC4xMzkgdWEvMi4wIG9zL21hY29zIzIzLjUu
+        MCBtZC9hcmNoI2FybTY0IGxhbmcvcHl0aG9uIzMuMTEuMiBtZC9weWltcGwjQ1B5dGhvbiBjZmcv
+        cmV0cnktbW9kZSNsZWdhY3kgQm90b2NvcmUvMS4zNC4xMzk=
+      X-Amz-Date:
+      - !!binary |
+        MjAyNDA3MDVUMTUxNTExWg==
+      X-Amz-Target:
+      - !!binary |
+        c2VjcmV0c21hbmFnZXIuR2V0U2VjcmV0VmFsdWU=
+      amz-sdk-invocation-id:
+      - !!binary |
+        M2YwYTkzZWItM2RjNS00OGNlLTkzZDAtNDhlMTZjOGNkZTQ5
+      amz-sdk-request:
+      - !!binary |
+        YXR0ZW1wdD0x
+    method: POST
+    uri: https://secretsmanager.us-west-2.amazonaws.com/
+  response:
+    body:
+      string: '{"ARN":"arn:aws:secretsmanager:us-west-2:719468614044:secret:bdk/test/openweather-6CuwXu","CreatedDate":1.720190655547E9,"Name":"bdk/test/openweather","SecretString":"{\"api_key\":\"API_KEY\"}","VersionId":"b492a3c0-65bb-4e66-bd18-5d81a008aa8c","VersionStages":["AWSCURRENT"]}'
+    headers:
+      Content-Length:
+      - '301'
+      Content-Type:
+      - application/x-amz-json-1.1
+      Date:
+      - Fri, 05 Jul 2024 15:15:11 GMT
+      x-amzn-RequestId:
+      - a8a7e58b-9839-41b8-83b2-dd47e62b0bc7
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: http://api.openweathermap.org/data/2.5/weather?appid=API_KEY&q=London
+  response:
+    body:
+      string: '{"coord":{"lon":-0.1257,"lat":51.5085},"weather":[{"id":803,"main":"Clouds","description":"broken
+        clouds","icon":"04d"}],"base":"stations","main":{"temp":292.73,"feels_like":292.86,"temp_min":291.34,"temp_max":294.01,"pressure":1005,"humidity":81,"sea_level":1005,"grnd_level":1001},"visibility":10000,"wind":{"speed":4.63,"deg":210},"clouds":{"all":75},"dt":1720192138,"sys":{"type":2,"id":2075535,"country":"GB","sunrise":1720151449,"sunset":1720210746},"timezone":3600,"id":2643743,"name":"London","cod":200}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '511'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 05 Jul 2024 15:15:12 GMT
+      Server:
+      - openresty
+      X-Cache-Key:
+      - /data/2.5/weather?q=london
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: http://api.openweathermap.org/data/2.5/weather?appid=API_KEY&q=NonExistentCity&units=standard
+  response:
+    body:
+      string: '{"cod":"404","message":"city not found"}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST
+      Access-Control-Allow-Origin:
+      - '*'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '40'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 05 Jul 2024 15:15:12 GMT
+      Server:
+      - openresty
+      X-Cache-Key:
+      - /data/2.5/weather?q=nonexistentcity&units=standard
+    status:
+      code: 404
+      message: Not Found
+version: 1

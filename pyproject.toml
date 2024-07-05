@@ -37,14 +37,16 @@ mypy = "^1.8.0"
 isort = "^5.13.2"
 black = "^24.2.0"
 pylint = "^3.0.3"
-requests-mock = "^1.11.0"
 pyright = "^1.1.360"
 pre-commit = "^3.7.1"
 
+boto3 = "^1.34.139"
+pytest-recording = "^0.13.1"
 [tool.poetry.scripts]
 tests = "poetry_scripts:run_tests"
 format = "poetry_scripts:run_format"
 lint = "poetry_scripts:run_lint"
+record = "poetry_scripts:run_record"
 type-check = "poetry_scripts:run_type_check"
 
 [build-system]

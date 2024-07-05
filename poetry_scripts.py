@@ -8,6 +8,10 @@ def run_tests():
     # generate coverage report
     run_cmd("poetry run pytest -vv --junit-xml=test-results.xml")
 
+def run_record():
+    # generate coverage report
+    run_cmd("poetry run pytest --record-mode=rewrite")
+
 def run_format():
     # format all files in-place
     run_cmd("poetry run black src tests")
