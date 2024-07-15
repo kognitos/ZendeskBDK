@@ -105,9 +105,9 @@ class OpenWeatherBook:
             >>> get the current temperature at Buenos Aires with
             ...     the unit is metric
         """
-        complete_url = f"{self._base_url}?appid={self._api_key}&q={quote(city.to_string())}&units={unit.to_string() if unit else 'standard'}"
+        complete_url = f"{self._base_url}?appid={self._api_key}&q={quote(str(city))}&units={str(unit) if unit else 'standard'}"
         try:
-            logger.info("retrieving temperature for %s", city.to_string())
+            logger.info("retrieving temperature for %s", str(city))
             response = requests.get(complete_url, timeout=self._timeout)
             weather_data = response.json()
             if weather_data["cod"] == 200:
@@ -116,7 +116,7 @@ class OpenWeatherBook:
 
             logger.error(
                 "error fetching data for %s, response Code: %s",
-                city.to_string(),
+                str(city),
                 weather_data["cod"],
             )
             raise HTTPError(weather_data["message"])
