@@ -5,6 +5,7 @@ import re
 import boto3
 import pytest
 
+
 def scrub_string(pattern, replacement=""):
     def before_record_response(response):
         body = response["body"]["string"].decode("utf-8")
@@ -23,8 +24,9 @@ def vcr_config():
             r"\"api_key\":\"API_KEY\"",
         ),
         "filter_query_parameters": [("appid", "API_KEY")],
-        "filter_headers": ['authorization']
+        "filter_headers": ["authorization"],
     }
+
 
 @pytest.fixture
 def aws_secret():
