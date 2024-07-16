@@ -122,20 +122,20 @@ jobs:
         AWS_ROLE_TO_ASSUME: ${{ secrets.AWS_ROLE_TO_ASSUME }}
         AWS_ROLE_EXTERNAL_ID: ${{ secrets.AWS_ROLE_EXTERNAL_ID }}
     - name: Build and Push the Docker Image
-      shell: bash
-      run: |
-        docker build --build-arg BDK_RUNTIME_IMAGE_URI=$BDK_RUNTIME_IMAGE_URI --build-arg CODE_ARTIFACT_TOKEN=${{ steps.setup_credentials.outputs.CODE_ARTIFACT_TOKEN }} -t new_book .
-        docker tag new_book $IMAGE_REPOSITORY:latest
-        docker push $IMAGE_REPOSITORY:latest
-        docker tag new_book $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.version }}
-        docker push $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.version }}
-        docker tag new_book $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}-latest
-        docker push $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}-latest
-        docker tag new_book $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}.${{ needs.SemanticRelease.outputs.minor }}
-        docker push $IMAGE_REPOSITORY:${{ needs.SemanticRelease.outputs.major }}.${{ needs.SemanticRelease.outputs.minor }}
-      env:
-        BDK_RUNTIME_IMAGE_URI: ${{ inputs.BDK_IMAGE_REPO }}:${{ inputs.BDK_RUNTIME_VERSION }}
-        IMAGE_REPOSITORY: ${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        build-args: |
+          BDK_RUNTIME_IMAGE_URI=${{ inputs.BDK_IMAGE_REPO }}:${{ inputs.BDK_RUNTIME_VERSION }}
+          CODE_ARTIFACT_TOKEN=${{ steps.setup_credentials.outputs.CODE_ARTIFACT_TOKEN }}
+        push: true
+        cache-from: type=gha
+        cache-to: type=gha, mode=max
+        tags: |
+          ${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}:latest
+          ${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}:${{ needs.SemanticRelease.outputs.version }}
+          ${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}:${{ needs.SemanticRelease.outputs.major }}-latest
+          ${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}:${{ needs.SemanticRelease.outputs.major }}.${{ needs.SemanticRelease.outputs.minor }}
 
   TerraformPrepare:
     name: Terraform Prepare
