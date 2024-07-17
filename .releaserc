@@ -3,11 +3,13 @@ branches:
 plugins:
     - "@semantic-release/commit-analyzer"
     - "@semantic-release/release-notes-generator"
-    - "@semantic-release/changelog"
+    - - "@semantic-release/changelog"
+      - "changelogFile": "CHANGELOG.md"
     - - "@semantic-release/exec"
       - prepareCmd: "sh ./.github/scripts/bump_project_version.sh ${nextRelease.version}"
     - - "@semantic-release/git"
       - assets:
+          - CHANGELOG.md
           - pyproject.toml
           - src/openweather/__version__.py
         message: "chore(auto-trigger): bumped project version to ${nextRelease.version} [skip ci]"
