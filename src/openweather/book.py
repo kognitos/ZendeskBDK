@@ -19,7 +19,6 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-# pylint: disable=book-bad-icon-path
 @book(name="Open Weather", icon="data/icon.svg")
 class OpenWeatherBook:
     """
