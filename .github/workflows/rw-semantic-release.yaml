@@ -108,6 +108,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+        token: ${{ secrets.BDK_PAT_TOKEN }}
     - name: Pull SemVer update
       shell: bash
       run: git pull
