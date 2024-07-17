@@ -134,6 +134,7 @@ jobs:
         push: true
         cache-from: type=gha
         cache-to: type=gha, mode=max
+        provenance: false
         tags: |
           ${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}:latest
           ${{ inputs.DOCKER_REGISTRY }}/kognitos/book/${{ inputs.BOOK_NAME }}:${{ needs.SemanticRelease.outputs.version }}
