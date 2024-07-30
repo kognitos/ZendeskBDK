@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/kognitos/book-openweather/compare/v1.3.1...v1.3.2) (2024-07-30)
+
+
+### Bug Fixes
+
+* added option to store default API_KEY within lambda env ([ec79b36](https://github.com/kognitos/book-openweather/commit/ec79b36936995f19640ce4129fcb3d9a0f857f95))
+
 ## [1.3.1](https://github.com/kognitos/book-openweather/compare/v1.3.0...v1.3.1) (2024-07-30)
 
 
