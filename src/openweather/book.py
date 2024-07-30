@@ -3,6 +3,7 @@ A short description of the project.
 """
 
 import logging
+import os
 from typing import Optional
 from urllib.parse import quote
 
@@ -70,6 +71,7 @@ class OpenWeatherBook:
         Labels:
             api_key: API Key
         """
+        api_key = os.getenv("API_KEY", api_key)
         test_url = f"{self._base_url}?appid={api_key}&q=London"
         response = requests.get(test_url, timeout=self._timeout)
         if response.status_code == 401:
