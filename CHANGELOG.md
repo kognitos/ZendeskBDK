@@ -1,3 +1,10 @@
+## [1.3.4](https://github.com/kognitos/book-openweather/compare/v1.3.3...v1.3.4) (2024-07-31)
+
+
+### Bug Fixes
+
+* updated lockfiles ([6a1050a](https://github.com/kognitos/book-openweather/commit/6a1050a49155f86119e8f607ae81e8841cec7508))
+
 ## [1.3.3](https://github.com/kognitos/book-openweather/compare/v1.3.2...v1.3.3) (2024-07-31)
 
 
