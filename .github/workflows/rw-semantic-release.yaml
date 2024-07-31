@@ -78,6 +78,7 @@ jobs:
         branches: main
         extra_plugins: |
           @semantic-release/exec
+          conventional-changelog-conventionalcommits
       env:
         CODE_ARTIFACT_TOKEN: ${{ steps.setup_credentials.outputs.CODE_ARTIFACT_TOKEN }}
         GITHUB_TOKEN: ${{ secrets.BDK_PAT_TOKEN }}
