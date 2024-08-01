@@ -1,3 +1,10 @@
+## [1.3.5](https://github.com/kognitos/book-openweather/compare/v1.3.4...v1.3.5) (2024-08-01)
+
+
+### Bug Fixes
+
+* bumped bdk runtime ([47d7597](https://github.com/kognitos/book-openweather/commit/47d7597894e3faf9fe43091524e1c96b763d38bb))
+
 ## [1.3.4](https://github.com/kognitos/book-openweather/compare/v1.3.3...v1.3.4) (2024-07-31)
 
 
