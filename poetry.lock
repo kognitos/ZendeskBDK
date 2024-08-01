@@ -355,13 +355,13 @@ files = [
 
 [[package]]
 name = "kognitos-bdk-api"
-version = "1.0.9"
+version = "1.0.11"
 description = "Kognitos Book Development Kit"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_api-1.0.9-py3-none-any.whl", hash = "sha256:d41c827eef52138261fd6fb3fe9934a87465154c995c705bf3dec1e139be276d"},
-    {file = "kognitos_bdk_api-1.0.9.tar.gz", hash = "sha256:a0348f4c6e841fffedab00a31d2f5a58e4deebccd12eb78ded93e67015ed2fcf"},
+    {file = "kognitos_bdk_api-1.0.11-py3-none-any.whl", hash = "sha256:5ad0d5f7f36ec1c36e35d8da0118ecbca186fdc31c693833d1f0d65feb2294a1"},
+    {file = "kognitos_bdk_api-1.0.11.tar.gz", hash = "sha256:f682bb125197f2b7a8630b2f07cedb8c43ae17d7f9ad1d4bb87b7731ebd55955"},
 ]
 
 [package.dependencies]
