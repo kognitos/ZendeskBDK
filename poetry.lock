@@ -391,13 +391,13 @@ reference = "bdk"
 
 [[package]]
 name = "kognitos-bdk-linter"
-version = "1.5.1"
+version = "1.5.2"
 description = "Kognitos BDK Linter"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_linter-1.5.1-py3-none-any.whl", hash = "sha256:d36fdd4baf000df08be1c5d0dbdc8568f1cfee6ee1a4302f9925667ad780dafc"},
-    {file = "kognitos_bdk_linter-1.5.1.tar.gz", hash = "sha256:0e0b8f6c205b5254cd9181010bc2f45ecafab179faea86112e0bd3a3b3a1fd0e"},
+    {file = "kognitos_bdk_linter-1.5.2-py3-none-any.whl", hash = "sha256:022bf3af23ffe154ba3659f37e35d9a7c5627bc0cd26bf93297b9e28e37d1a47"},
+    {file = "kognitos_bdk_linter-1.5.2.tar.gz", hash = "sha256:f57adb5f574548bc1886db9ce75517b16e8b392ce258112a37dc18a0e9714dcd"},
 ]
 
 [package.dependencies]
@@ -1128,4 +1128,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<4.0"
-content-hash = "cecafa1985b392ae0ed2773e2ad5dc41eb3c4c65055b37320f202d56d03c20bc"
+content-hash = "393e0b1f6fcf661e0131d96a576f3a26a2d12a95c08f21e637054f93fb8278c4"

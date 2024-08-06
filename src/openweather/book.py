@@ -59,7 +59,7 @@ class OpenWeatherBook:
             raise ValueError("timeout must be positive")
         self._timeout = timeout
 
-    @connect
+    @connect(noun_phrase="api keys")
     def connect(self, api_key: str):
         """
         Authenticate to Open Weather API using the specified API key. You can obtain you own API key by visiting
