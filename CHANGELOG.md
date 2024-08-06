@@ -1,3 +1,10 @@
+## [1.3.6](https://github.com/kognitos/book-openweather/compare/v1.3.5...v1.3.6) (2024-08-06)
+
+
+### Bug Fixes
+
+* added connect noun phrase and updated dependencies ([4b55fca](https://github.com/kognitos/book-openweather/commit/4b55fca2f47d746e76edb523f5b7d275198a6efb))
+
 ## [1.3.5](https://github.com/kognitos/book-openweather/compare/v1.3.4...v1.3.5) (2024-08-01)
 
 
