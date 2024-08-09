@@ -17,32 +17,5 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  Config:
-    name: Setup Configuration Variables
-    uses: ./.github/workflows/rw-setup-configuration-variables.yaml
-
-  RunChecksAndTests:
-    name: Run Checks and Tests
-    needs: Config
-    uses: ./.github/workflows/rw-run-checks-and-tests.yaml
-    with:
-      AWS_REGION: ${{ needs.Config.outputs.AWS_REGION }}
-      AWS_ACCOUNT_ID: ${{ needs.Config.outputs.AWS_ACCOUNT_ID }}
-    secrets: inherit
-
-  SemanticRelease:
-    name: Semantic Release
-    uses: ./.github/workflows/rw-semantic-release.yaml
-    needs: [ Config, RunChecksAndTests ]
-    with:
-      BOOK_NAME: ${{ needs.Config.outputs.BOOK_NAME }}
-      CURRENT_BOOK_VERSION: ${{ needs.Config.outputs.CURRENT_BOOK_VERSION }}
-      BDK_RUNTIME_VERSION: ${{ needs.Config.outputs.BDK_RUNTIME_VERSION }}
-      BDK_IMAGE_REPO: ${{ needs.Config.outputs.BDK_IMAGE_REPO }}
-      AWS_REGION: ${{ needs.Config.outputs.AWS_REGION }}
-      AWS_ACCOUNT_ID: ${{ needs.Config.outputs.AWS_ACCOUNT_ID }}
-      AUTHORS: ${{ needs.Config.outputs.AUTHORS }}
-      DOCKER_REGISTRY: ${{ needs.Config.outputs.DOCKER_REGISTRY }}
-      TERRAFORM_BACKEND_BUCKET_NAME: ${{ needs.Config.outputs.TERRAFORM_BACKEND_BUCKET_NAME }}
-      FORCE_DEPLOYMENT: ${{ inputs.FORCE_DEPLOYMENT || false }}
-    secrets: inherit
+  book-workflow:
+    uses: kognitos/bdk-book-workflow/workflows/main-pipeline.yml@main
