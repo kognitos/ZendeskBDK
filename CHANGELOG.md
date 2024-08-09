@@ -1,3 +1,10 @@
+## [1.3.9](https://github.com/kognitos/book-openweather/compare/v1.3.8...v1.3.9) (2024-08-09)
+
+
+### Bug Fixes
+
+* removed .releaserc since the shared workflow provides one ([d61bfa5](https://github.com/kognitos/book-openweather/commit/d61bfa5bf8a081987030b2d7e9d3702f637ab6ad))
+
 ## [1.3.8](https://github.com/kognitos/book-openweather/compare/v1.3.7...v1.3.8) (2024-08-09)
 
 
