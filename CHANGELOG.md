@@ -1,3 +1,12 @@
+## [1.3.8](https://github.com/kognitos/book-openweather/compare/v1.3.7...v1.3.8) (2024-08-09)
+
+
+### Bug Fixes
+
+* added back force deployment ([dcadb39](https://github.com/kognitos/book-openweather/commit/dcadb395e53d6b796f3775f01c6139fa566b0301))
+* allow bdk workflow to inherit secrets ([b2c8e24](https://github.com/kognitos/book-openweather/commit/b2c8e24541c28c2171757ebbc95ace6c283a0940))
+* change the location of the shared workflow script ([5c699ff](https://github.com/kognitos/book-openweather/commit/5c699fff8b4780a1720db0a1d7be12952be020d6))
+
 ## [1.3.7](https://github.com/kognitos/book-openweather/compare/v1.3.6...v1.3.7) (2024-08-07)
 
 
