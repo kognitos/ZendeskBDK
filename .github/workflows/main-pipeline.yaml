@@ -12,7 +12,7 @@ on:
         type: bool
         default: false
 
-concurrency:
+concurrency: 
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
