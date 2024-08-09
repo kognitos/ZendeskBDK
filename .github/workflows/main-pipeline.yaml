@@ -19,3 +19,4 @@ concurrency:
 jobs:
   book-workflow:
     uses: kognitos/bdk-book-workflow/.github/workflows/main-pipeline.yaml@main
+    secrets: inherit
