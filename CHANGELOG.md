@@ -1,3 +1,11 @@
+## [1.3.13](https://github.com/kognitos/book-openweather/compare/v1.3.12...v1.3.13) (2024-08-09)
+
+
+### Bug Fixes
+
+* another meaningless change to test release workflow ([91a24d7](https://github.com/kognitos/book-openweather/commit/91a24d7760a9cbe83e6224f5f863e6a243f0e5eb))
+* another meaningless change to test release workflow ([6fda017](https://github.com/kognitos/book-openweather/commit/6fda01707b4ca26fdb3c7bc33fd01c26978b9710))
+
 ## [1.3.12](https://github.com/kognitos/book-openweather/compare/v1.3.11...v1.3.12) (2024-08-09)
 
 
