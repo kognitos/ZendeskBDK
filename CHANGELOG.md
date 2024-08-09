@@ -1,3 +1,10 @@
+## [1.3.16](https://github.com/kognitos/book-openweather/compare/v1.3.15...v1.3.16) (2024-08-09)
+
+
+### Bug Fixes
+
+* bumped bdk api ([c829aab](https://github.com/kognitos/book-openweather/commit/c829aab87ad4e3df59887532577e9eab4b628694))
+
 ## [1.3.15](https://github.com/kognitos/book-openweather/compare/v1.3.14...v1.3.15) (2024-08-09)
 
 
