@@ -1,3 +1,10 @@
+## [1.3.14](https://github.com/kognitos/book-openweather/compare/v1.3.13...v1.3.14) (2024-08-09)
+
+
+### Bug Fixes
+
+* removed terraform files ([46a2da3](https://github.com/kognitos/book-openweather/commit/46a2da324c667d870377f7539c39444e4190f808))
+
 ## [1.3.13](https://github.com/kognitos/book-openweather/compare/v1.3.12...v1.3.13) (2024-08-09)
 
 
