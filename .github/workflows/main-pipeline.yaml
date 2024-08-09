@@ -1,4 +1,4 @@
-name: Main Pipeline
+name: CI
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
     inputs:
       FORCE_DEPLOYMENT:
         required: false
-        type: bool
+        type: boolean
         default: false
 
 concurrency:
@@ -17,6 +17,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  book-workflow:
+  BDKWorkflow:
+    name: BDK Book Workflow
     uses: kognitos/bdk-book-workflow/.github/workflows/main-pipeline.yaml@main
+    with:
+      FORCE_DEPLOYMENT: ${{ inputs.FORCE_DEPLOYMENT || false }}
     secrets: inherit
