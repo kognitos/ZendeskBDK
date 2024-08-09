@@ -57,17 +57,17 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "boto3"
-version = "1.34.155"
+version = "1.34.158"
 description = "The AWS SDK for Python"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "boto3-1.34.155-py3-none-any.whl", hash = "sha256:445239ea2ba7f4084ddbd71f721c14d0a6d08e06f6ba51b5403a16b6544b3f1e"},
-    {file = "boto3-1.34.155.tar.gz", hash = "sha256:e8d2e128c74e84199edccdc3a6b4b1c6fb36d6fdb5688eb92931827f02c6fa5b"},
+    {file = "boto3-1.34.158-py3-none-any.whl", hash = "sha256:c29e9b7e1034e8734ccaffb9f2b3f3df2268022fd8a93d836604019f8759ce27"},
+    {file = "boto3-1.34.158.tar.gz", hash = "sha256:5b7b2ce0ec1e498933f600d29f3e1c641f8c44dd7e468c26795359d23d81fa39"},
 ]
 
 [package.dependencies]
-botocore = ">=1.34.155,<1.35.0"
+botocore = ">=1.34.158,<1.35.0"
 jmespath = ">=0.7.1,<2.0.0"
 s3transfer = ">=0.10.0,<0.11.0"
 
@@ -76,13 +76,13 @@ crt = ["botocore[crt] (>=1.21.0,<2.0a0)"]
 
 [[package]]
 name = "botocore"
-version = "1.34.155"
+version = "1.34.158"
 description = "Low-level, data-driven core of boto 3."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "botocore-1.34.155-py3-none-any.whl", hash = "sha256:f2696c11bb0cad627d42512937befd2e3f966aedd15de00d90ee13cf7a16b328"},
-    {file = "botocore-1.34.155.tar.gz", hash = "sha256:3aa88abfef23909f68d3e6679a3d4b4bb3c6288a6cfbf9e253aa68dac8edad64"},
+    {file = "botocore-1.34.158-py3-none-any.whl", hash = "sha256:0e6fceba1e39bfa8feeba70ba3ac2af958b3387df4bd3b5f2db3f64c1754c756"},
+    {file = "botocore-1.34.158.tar.gz", hash = "sha256:5934082e25ad726673afbf466092fb1223dafa250e6e756c819430ba6b1b3da5"},
 ]
 
 [package.dependencies]
@@ -355,13 +355,13 @@ files = [
 
 [[package]]
 name = "kognitos-bdk-api"
-version = "1.0.15"
+version = "1.0.20"
 description = "Kognitos Book Development Kit"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_api-1.0.15-py3-none-any.whl", hash = "sha256:137c3a5f0c5a9d6e457c8b41d9492ff600eba101c789a53c5860b7be4323f08c"},
-    {file = "kognitos_bdk_api-1.0.15.tar.gz", hash = "sha256:f8afdaf72b6fdf6638cad630b3ac1be1df8b8f7fa512d6200eaf6aa0adfb2d40"},
+    {file = "kognitos_bdk_api-1.0.20-py3-none-any.whl", hash = "sha256:ec24db8e825eca2322d79387a302b398223d48958f74d02558c347242e46d1a3"},
+    {file = "kognitos_bdk_api-1.0.20.tar.gz", hash = "sha256:0d98ca5cef15b12533e9bf87a715f6b65710fef990b935045689609fa177e8c3"},
 ]
 
 [package.dependencies]
@@ -375,13 +375,13 @@ reference = "bdk"
 
 [[package]]
 name = "kognitos-bdk-klang"
-version = "2.1.1"
+version = "2.2.0"
 description = ""
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "kognitos_bdk_klang-2.1.1-py3-none-any.whl", hash = "sha256:9aa12980ed0bed06221f738922cb3052b691d910456a36ce643163b417599671"},
-    {file = "kognitos_bdk_klang-2.1.1.tar.gz", hash = "sha256:a3fe0784db16a31882806951c134f06d953e81891433e6e934041b66fd0c17eb"},
+    {file = "kognitos_bdk_klang-2.2.0-py3-none-any.whl", hash = "sha256:650d32000b43c18ca99e747f3fc77cd29f67816bd5b60510e8e0db325b132903"},
+    {file = "kognitos_bdk_klang-2.2.0.tar.gz", hash = "sha256:fe0fa5b364a24b1258e0058ac7e31e3bcaa0ec39b11f9be08e3c15d03b50f435"},
 ]
 
 [package.source]
@@ -391,13 +391,13 @@ reference = "bdk"
 
 [[package]]
 name = "kognitos-bdk-linter"
-version = "1.5.2"
+version = "1.5.5"
 description = "Kognitos BDK Linter"
 optional = false
 python-versions = ">=3.11,<4.0"
 files = [
-    {file = "kognitos_bdk_linter-1.5.2-py3-none-any.whl", hash = "sha256:022bf3af23ffe154ba3659f37e35d9a7c5627bc0cd26bf93297b9e28e37d1a47"},
-    {file = "kognitos_bdk_linter-1.5.2.tar.gz", hash = "sha256:f57adb5f574548bc1886db9ce75517b16e8b392ce258112a37dc18a0e9714dcd"},
+    {file = "kognitos_bdk_linter-1.5.5-py3-none-any.whl", hash = "sha256:4a68674cec5a1630f43352deb4d90766de6820cd9065d95306efbcb043400cb3"},
+    {file = "kognitos_bdk_linter-1.5.5.tar.gz", hash = "sha256:6f7bd4ab463a54941eee40c32d656491ac54ee35d7a1f21bf06da2ab5084dc74"},
 ]
 
 [package.dependencies]
@@ -688,13 +688,13 @@ testutils = ["gitpython (>3)"]
 
 [[package]]
 name = "pyright"
-version = "1.1.374"
+version = "1.1.375"
 description = "Command line wrapper for pyright"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "pyright-1.1.374-py3-none-any.whl", hash = "sha256:55752bcf7a3646d293cd76710a983b71e16f6128aab2d42468e6eb7e46c0a70d"},
-    {file = "pyright-1.1.374.tar.gz", hash = "sha256:d01b2daf864ba5e0362e56b844984865970d7204158e61eb685e2dab7804cb82"},
+    {file = "pyright-1.1.375-py3-none-any.whl", hash = "sha256:4c5e27eddeaee8b41cc3120736a1dda6ae120edf8523bb2446b6073a52f286e3"},
+    {file = "pyright-1.1.375.tar.gz", hash = "sha256:7765557b0d6782b2fadabff455da2014476404c9e9214f49977a4e49dec19a0f"},
 ]
 
 [package.dependencies]
