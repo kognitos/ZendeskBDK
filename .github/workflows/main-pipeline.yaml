@@ -18,4 +18,4 @@ concurrency:
 
 jobs:
   book-workflow:
-    uses: kognitos/bdk-book-workflow/workflows/main-pipeline.yml@main
+    uses: kognitos/bdk-book-workflow/.github/workflows/main-pipeline.yml@main
