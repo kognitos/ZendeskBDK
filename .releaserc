@@ -8,7 +8,7 @@ plugins:
     - - "@semantic-release/changelog"
       - "changelogFile": "CHANGELOG.md"
     - - "@semantic-release/exec"
-      - prepareCmd: "sh ./.github/scripts/bump_project_version.sh ${nextRelease.version}"
+      - prepareCmd: "sh ./shared-workflow/.github/scripts/bump_project_version.sh ${nextRelease.version}"
     - - "@semantic-release/git"
       - assets:
           - CHANGELOG.md
