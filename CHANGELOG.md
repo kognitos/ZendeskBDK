@@ -1,3 +1,10 @@
+## [1.4.0](https://github.com/kognitos/book-openweather/compare/v1.3.17...v1.4.0) (2024-08-22)
+
+
+### Features
+
+* **INT-144:** bumped runtime and added opentelemetry dependencies ([#30](https://github.com/kognitos/book-openweather/issues/30)) ([a79d47d](https://github.com/kognitos/book-openweather/commit/a79d47db70cc17871951522420aeaf9ad7bb2202))
+
 ## [1.3.17](https://github.com/kognitos/book-openweather/compare/v1.3.16...v1.3.17) (2024-08-10)
 
 
