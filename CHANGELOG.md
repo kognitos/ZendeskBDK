@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/kognitos/book-openweather/compare/v1.4.0...v1.4.1) (2024-08-26)
+
+
+### Bug Fixes
+
+* **INT-136:** Try out slack message with nice lambda syntax ([4231346](https://github.com/kognitos/book-openweather/commit/4231346ab9d8aa5f74a44437b64394fa5cb9d294))
+
 ## [1.4.0](https://github.com/kognitos/book-openweather/compare/v1.3.17...v1.4.0) (2024-08-22)
 
 
