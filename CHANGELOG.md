@@ -1,3 +1,10 @@
+## [1.4.3](https://github.com/kognitos/book-openweather/compare/v1.4.2...v1.4.3) (2024-08-29)
+
+
+### Bug Fixes
+
+* raise proper exception ([8a45246](https://github.com/kognitos/book-openweather/commit/8a452468f696f6eee0a2c9c66822e10d394a990f))
+
 ## [1.4.2](https://github.com/kognitos/book-openweather/compare/v1.4.1...v1.4.2) (2024-08-29)
 
 
