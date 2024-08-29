@@ -1,3 +1,11 @@
+## [1.4.2](https://github.com/kognitos/book-openweather/compare/v1.4.1...v1.4.2) (2024-08-29)
+
+
+### Bug Fixes
+
+* bumped runtime and api ([b4c446e](https://github.com/kognitos/book-openweather/commit/b4c446e5b754daa20a92b77340f27b247745744d))
+* updated poetry.lock ([7a38698](https://github.com/kognitos/book-openweather/commit/7a38698d189c0e09e8f96d14fc754cf96dab5fba))
+
 ## [1.4.1](https://github.com/kognitos/book-openweather/compare/v1.4.0...v1.4.1) (2024-08-26)
 
 
