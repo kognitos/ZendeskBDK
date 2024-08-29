@@ -59,7 +59,10 @@ def test_current_temperature_with_units(connected_openweather_book):
 
 @pytest.mark.vcr
 def test_get_current_temperature_error_response(connected_openweather_book):
-    with pytest.raises(HTTPError):
+    with pytest.raises(HTTPError) as e:
         connected_openweather_book.current_temperature(
             NounPhrase("NonExistentCity", [])
         )
+
+    assert e.value.response.status_code == 404
+    assert e.value.request

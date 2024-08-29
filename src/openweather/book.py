@@ -110,20 +110,15 @@ class OpenWeatherBook:
         try:
             logger.info("retrieving temperature for %s", str(city))
             response = requests.get(complete_url, timeout=self._timeout)
-            weather_data = response.json()
-            if weather_data["cod"] == 200:
-                temperature = weather_data["main"]["temp"]
-                return temperature
+            response.raise_for_status()
 
-            logger.error(
-                "error fetching data for %s, response Code: %s",
-                str(city),
-                weather_data["cod"],
-            )
-            raise HTTPError(weather_data["message"])
+            weather_data = response.json()
+
+            temperature = weather_data["main"]["temp"]
+            return temperature
         except requests.Timeout:
             logger.error("request timed out")
             raise
-        except requests.RequestException as e:
+        except (requests.RequestException, HTTPError) as e:
             logger.error("error occurred: %s", e)
             raise
