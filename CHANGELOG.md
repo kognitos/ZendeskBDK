@@ -1,3 +1,11 @@
+## [1.4.4](https://github.com/kognitos/book-openweather/compare/v1.4.3...v1.4.4) (2024-09-20)
+
+
+### Bug Fixes
+
+* bump runtime version ([ab48129](https://github.com/kognitos/book-openweather/commit/ab481292b70a99e3a514c65236ded81586a15946))
+* updated lockfiles ([8f98f09](https://github.com/kognitos/book-openweather/commit/8f98f09e24ce292665b30af17d5139d853d704aa))
+
 ## [1.4.3](https://github.com/kognitos/book-openweather/compare/v1.4.2...v1.4.3) (2024-08-29)
 
 
