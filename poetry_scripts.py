@@ -25,3 +25,7 @@ def run_lint():
 def run_type_check():
     # type check source
     run_cmd("poetry run pyright")
+
+def run_doc():
+    # generate documentation
+    run_cmd("poetry bdk usage")
