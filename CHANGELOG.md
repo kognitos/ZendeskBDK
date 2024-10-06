@@ -1,3 +1,9 @@
+## [1.4.5](https://github.com/kognitos/book-openweather/compare/v1.4.4...v1.4.5) (2024-10-06)
+
+### Bug Fixes
+
+* bumped api, linter and runtime ([5d629a3](https://github.com/kognitos/book-openweather/commit/5d629a390b48ecc7146b2ba79f38a88db1f7ef9b))
+
 ## [1.4.4](https://github.com/kognitos/book-openweather/compare/v1.4.3...v1.4.4) (2024-09-20)
 
 
