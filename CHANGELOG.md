@@ -1,3 +1,9 @@
+## [1.4.6](https://github.com/kognitos/book-openweather/compare/v1.4.5...v1.4.6) (2024-10-08)
+
+### Bug Fixes
+
+* updated Dockerfile to latest standards ([d1b562f](https://github.com/kognitos/book-openweather/commit/d1b562f6bbedb0cde99ebd60996ca68641f9af60))
+
 ## [1.4.5](https://github.com/kognitos/book-openweather/compare/v1.4.4...v1.4.5) (2024-10-06)
 
 ### Bug Fixes
