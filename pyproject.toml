@@ -13,7 +13,7 @@ DOCKER_REGISTRY = "{AWS_ACCOUNT_ID}.dkr.ecr.{AWS_REGION}.amazonaws.com"
 TERRAFORM_BACKEND_BUCKET_NAME = "bdk-terraform-backend"
 
 [environment]
-bdk_runtime_version = "1.24.13"
+bdk_runtime_version = "1.25.5"
 bdk_image_repo = "719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk"
 
 [[tool.poetry.source]]
@@ -27,8 +27,8 @@ pythonpath = ["src"]
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
 requests = "^2.31.0"
-kognitos-bdk-api = {version = "^1.5", source = "bdk"}
-kognitos-bdk-klang = {version = "^2.2", source = "bdk"}
+kognitos-bdk-api = {version = "^1.7.3", source = "bdk"}
+kognitos-bdk-klang = {version = "^2.0", source = "bdk"}
 opentelemetry-api = "^1.26.0"
 opentelemetry-sdk = "^1.26.0"
 opentelemetry-exporter-otlp = "^1.26.0"
