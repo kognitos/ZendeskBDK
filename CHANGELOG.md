@@ -1,3 +1,9 @@
+## [1.4.7](https://github.com/kognitos/book-openweather/compare/v1.4.6...v1.4.7) (2024-11-01)
+
+### Bug Fixes
+
+* updated dependencies ([#32](https://github.com/kognitos/book-openweather/issues/32)) ([c9d6cb2](https://github.com/kognitos/book-openweather/commit/c9d6cb27fff692bfb14e85126ca08272ffcabb79))
+
 ## [1.4.6](https://github.com/kognitos/book-openweather/compare/v1.4.5...v1.4.6) (2024-10-08)
 
 ### Bug Fixes
