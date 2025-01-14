@@ -39,12 +39,7 @@ cd bdk
 ```
 
 ### Install Dependencies
-Use Poetry to install all required dependencies in an isolated environment. This book is dependent on BDK API, which
-requires authentication prior to being able to use it.
-
-```shell
-poetry config http-basic.bdk aws $(aws codeartifact get-authorization-token --domain-owner 719468614044 --domain kognitos --query 'authorizationToken' --output text)
-```
+Use Poetry to install all required dependencies in an isolated environment
 
 ```shell
 poetry install

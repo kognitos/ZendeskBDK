@@ -493,63 +493,49 @@ files = [
 
 [[package]]
 name = "kognitos-bdk-api"
-version = "1.7.3"
+version = "1.13.0"
 description = "Kognitos Book Development Kit"
 optional = false
-python-versions = ">=3.11,<4.0"
+python-versions = "<4.0,>=3.11"
 files = [
-    {file = "kognitos_bdk_api-1.7.3-py3-none-any.whl", hash = "sha256:75c2b045b1a7c2569e8032211c28f5f093ca846e674c625d9d2cce28114407ad"},
-    {file = "kognitos_bdk_api-1.7.3.tar.gz", hash = "sha256:358618f86d4f04ed9c7bf49f98595d8feb5c6d1f089d24eaef633a4674500654"},
+    {file = "kognitos_bdk_api-1.13.0-py3-none-any.whl", hash = "sha256:92d38cbbbc34155c037bb7f9dd68fa76a5fff0b659ebedb1e97d82bcd7c71788"},
+    {file = "kognitos_bdk_api-1.13.0.tar.gz", hash = "sha256:c36a92dd11341fb86c139c31de84ae65db4946fcc7a796b8f18638f1185c1e91"},
 ]
 
 [package.dependencies]
 docstring-parser = ">=0.15,<0.16"
 kognitos-bdk-klang = ">=2.0.0,<3.0.0"
+uritemplate = ">=4.1.1,<5.0.0"
 
 [package.extras]
 attrs = ["attrs (>=24.2.0,<25.0.0)"]
 
-[package.source]
-type = "legacy"
-url = "https://kognitos-719468614044.d.codeartifact.us-west-2.amazonaws.com/pypi/bdk/simple"
-reference = "bdk"
-
 [[package]]
 name = "kognitos-bdk-klang"
-version = "2.2.1"
+version = "2.2.2"
 description = "A Signature parser for Kognitos book development kit (BDK)"
 optional = false
-python-versions = ">=3.9,<4.0"
+python-versions = "<4.0,>=3.9"
 files = [
-    {file = "kognitos_bdk_klang-2.2.1-py3-none-any.whl", hash = "sha256:8d2b5f11f5a4cf6b21f4978f0b661d9c32a71d4fc55df7a6efebf08cb16786b5"},
-    {file = "kognitos_bdk_klang-2.2.1.tar.gz", hash = "sha256:f14a6c65732b00a64089aedba1a309a2bda47f3eb58f1db32ce2a5dccbae3818"},
+    {file = "kognitos_bdk_klang-2.2.2-py3-none-any.whl", hash = "sha256:be3819c48f22f82d802d5c9c05cd44178b77d41a8371e678d12d1d56538995b9"},
+    {file = "kognitos_bdk_klang-2.2.2.tar.gz", hash = "sha256:1dd40f2fb62838de5e455625477465195e2ef60baf3c429b36cc2f7bfad21ef0"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://kognitos-719468614044.d.codeartifact.us-west-2.amazonaws.com/pypi/bdk/simple"
-reference = "bdk"
 
 [[package]]
 name = "kognitos-bdk-linter"
-version = "1.10.0"
+version = "1.14.1"
 description = "Kognitos BDK Linter"
 optional = false
-python-versions = ">=3.11,<4.0"
+python-versions = "<4.0,>=3.11"
 files = [
-    {file = "kognitos_bdk_linter-1.10.0-py3-none-any.whl", hash = "sha256:9ec71fe3e7b538d1dfb42e407040a82f19ae2c103dd861973d42a16320ffea8e"},
-    {file = "kognitos_bdk_linter-1.10.0.tar.gz", hash = "sha256:7a7d0e3026e06c9d713121a91b5a0a9aba076e0df5287722e61cf659eca01695"},
+    {file = "kognitos_bdk_linter-1.14.1-py3-none-any.whl", hash = "sha256:7a64554239ff17976c6b3a38a0d46243afa017b2faf3fd76961d76fe0b2cb65b"},
+    {file = "kognitos_bdk_linter-1.14.1.tar.gz", hash = "sha256:680e3d5b2d0bfa84c41229d6c3efbb4d60b06475ee65222a88c20f0adbc8e0b0"},
 ]
 
 [package.dependencies]
-kognitos-bdk-api = ">=1.7.0,<2.0.0"
+kognitos-bdk-api = ">=1.13.0,<2.0.0"
 kognitos-bdk-klang = ">=2.0.0,<3.0.0"
 pylint = ">=3.0,<4.0"
-
-[package.source]
-type = "legacy"
-url = "https://kognitos-719468614044.d.codeartifact.us-west-2.amazonaws.com/pypi/bdk/simple"
-reference = "bdk"
 
 [[package]]
 name = "mccabe"
@@ -1365,6 +1351,17 @@ files = [
 ]
 
 [[package]]
+name = "uritemplate"
+version = "4.1.1"
+description = "Implementation of RFC 6570 URI Templates"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "uritemplate-4.1.1-py2.py3-none-any.whl", hash = "sha256:830c08b8d99bdd312ea4ead05994a38e8936266f84b9a7878232db50b044e02e"},
+    {file = "uritemplate-4.1.1.tar.gz", hash = "sha256:4346edfc5c3b79f694bccd6d6099a322bbeb628dbf2cd86eea55a456ce5124f0"},
+]
+
+[[package]]
 name = "urllib3"
 version = "1.26.20"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -1637,4 +1634,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<4.0"
-content-hash = "52adf792de8aad690e3556b4b8264e7753a6a231e4db7f2dc99764b5f0a6f65a"
+content-hash = "d7d7031055891f5e8b180433f5f9fced5fe9c64cda68bbafff0943d58bee24b9"

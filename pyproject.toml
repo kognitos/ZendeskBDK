@@ -16,10 +16,6 @@ TERRAFORM_BACKEND_BUCKET_NAME = "bdk-terraform-backend"
 bdk_runtime_version = "1.25.5"
 bdk_image_repo = "719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk"
 
-[[tool.poetry.source]]
-name = "bdk"
-url = "https://kognitos-719468614044.d.codeartifact.us-west-2.amazonaws.com/pypi/bdk/simple/"
-priority = "explicit"
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
@@ -27,8 +23,8 @@ pythonpath = ["src"]
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
 requests = "^2.31.0"
-kognitos-bdk-api = {version = "^1.7.3", source = "bdk"}
-kognitos-bdk-klang = {version = "^2.0", source = "bdk"}
+kognitos-bdk-api = "^1.2"
+kognitos-bdk-klang = "^2.2"
 opentelemetry-api = "^1.26.0"
 opentelemetry-sdk = "^1.26.0"
 opentelemetry-exporter-otlp = "^1.26.0"
@@ -45,7 +41,7 @@ pyright = "^1.1.360"
 pre-commit = "^3.7.1"
 boto3 = "^1.34.139"
 pytest-recording = "^0.13.1"
-kognitos-bdk-linter = {version = "^1.8", source = "bdk"}
+kognitos-bdk-linter = "^1.6"
 
 [tool.poetry.scripts]
 tests = "poetry_scripts:run_tests"
