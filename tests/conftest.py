@@ -1,12 +1,39 @@
-# pylint: disable=missing-module-docstring, missing-function-docstring
+""" Configuration for pytest. """
+
 import json
 import re
 
 import boto3
 import pytest
+from zendesk.book import ZendeskBook
 
+# @pytest.fixture
+# def zendesk_book():
+#     """
+#     Fixture for Zendesk book.
+#     """
+#     book = ZendeskBook()
+#     return book
+
+
+# @pytest.fixture
+# def connected_zendesk_book(zendesk_book, aws_secret):
+#     """
+#     Fixture for connected Zendesk book.
+#     """
+#     zendesk_book.connect(
+#         aws_secret.get("subdomain"),
+#         aws_secret.get("email"),
+#         aws_secret.get("token"),
+#         aws_secret.get("password"),
+#     )
+#     return zendesk_book
 
 def scrub_string(pattern, replacement=""):
+    """
+    Scrubs a string in a response
+    """
+
     def before_record_response(response):
         body = response["body"]["string"].decode("utf-8")
         body = re.sub(pattern, replacement, body)
@@ -18,6 +45,9 @@ def scrub_string(pattern, replacement=""):
 
 @pytest.fixture(scope="package")
 def vcr_config():
+    """
+    Configuration for VCR
+    """
     return {
         "before_record_response": scrub_string(
             r'\\"api_key\\":\\"[^\\]+\\"',
@@ -33,7 +63,7 @@ def aws_secret():
     """
     Retrieve credentials from AWS Secrets Manager
     """
-    secret_name = "bdk/test/openweather"
+    secret_name = "bdk/test/zendesk_secrets"
     region_name = "us-west-2"
 
     # Create a Secrets Manager client

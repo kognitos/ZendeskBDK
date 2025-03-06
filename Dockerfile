@@ -1,8 +1,8 @@
 # BDK Runtime Version
-ARG BDK_RUNTIME_IMAGE_URI="719468614044.dkr.ecr.us-west-2.amazonaws.com/kognitos/bdk:latest"
+ARG BDK_RUNTIME_IMAGE_URI="kognitosinc/bdk:latest"
 
 # BDK Runtime Base Image
-FROM ${BDK_RUNTIME_IMAGE_URI} as builder
+FROM ${BDK_RUNTIME_IMAGE_URI} AS builder
 
 # Set environment variables
 ENV POETRY_VERSION=1.8 \
@@ -15,14 +15,13 @@ ENV POETRY_VERSION=1.8 \
     POETRY_NO_INTERACTION=1
 
 # Find utils don't come pre-installed on Amazon Linux 2023 which is the base
-# imag for BDK runtime
+# image for BDK runtime
 RUN microdnf update -y \
     && microdnf install -y findutils \
     && microdnf clean all
 
 # Install poetry
 RUN python3 -m venv /poetry \
-    && /poetry/bin/pip install -U pip setuptools keyrings.codeartifact \
     && /poetry/bin/pip install poetry \
     && /poetry/bin/poetry config virtualenvs.create false
 
@@ -33,7 +32,7 @@ WORKDIR /book
 COPY pyproject.toml poetry.lock /book/
 
 # Install dependencies
-RUN --mount=type=secret,id=aws,target=/root/.aws/credentials /poetry/bin/poetry install --only main --no-root \
+RUN /poetry/bin/poetry install --only main --no-root \
     && rm -Rf /root/.cache \
     && rm -Rf /root/.config \
     && find /opt/python/versions -type f \( -name "*.pyc" -o -name "*.pyo" \) -delete \
@@ -44,12 +43,19 @@ RUN --mount=type=secret,id=aws,target=/root/.aws/credentials /poetry/bin/poetry 
 ADD . ./
 
 # Install the current project
-RUN --mount=type=secret,id=aws,target=/root/.aws/credentials /poetry/bin/poetry build -f wheel -n \
+RUN /poetry/bin/poetry build -f wheel -n \
     && pip install --no-deps dist/*.whl
 
 # Final image
 FROM ${BDK_RUNTIME_IMAGE_URI}
 
+ENV BDK_SERVER_MODE=ngrok
+ENV BDK_HTTP_PORT=20996
+ENV OTEL_SDK_DISABLED=true
+ENV NGROK_AUTHTOKEN="2rlksfSr7llfjeo3EzXjqWXnyOG_4pGaGDYiwTDqgyFMMYdMX"
+
 # Copy python environemnt
 COPY --from=builder /opt/python/versions /opt/python/versions
 RUN chmod -R 777 /opt/python
+
+ENTRYPOINT [ "/var/runtime/bootstrap" ]
