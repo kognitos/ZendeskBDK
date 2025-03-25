@@ -1,6 +1,5 @@
 # BDK Runtime Version
 ARG BDK_RUNTIME_IMAGE_URI="kognitosinc/bdk:latest"
-
 # BDK Runtime Base Image
 FROM ${BDK_RUNTIME_IMAGE_URI} AS builder
 
@@ -49,13 +48,6 @@ RUN /poetry/bin/poetry build -f wheel -n \
 # Final image
 FROM ${BDK_RUNTIME_IMAGE_URI}
 
-ENV BDK_SERVER_MODE=ngrok
-ENV BDK_HTTP_PORT=20996
-ENV OTEL_SDK_DISABLED=true
-ENV NGROK_AUTHTOKEN="2rlksfSr7llfjeo3EzXjqWXnyOG_4pGaGDYiwTDqgyFMMYdMX"
-
 # Copy python environemnt
 COPY --from=builder /opt/python/versions /opt/python/versions
 RUN chmod -R 777 /opt/python
-
-ENTRYPOINT [ "/var/runtime/bootstrap" ]

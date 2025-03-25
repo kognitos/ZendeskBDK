@@ -63,8 +63,8 @@ class ZendeskTicket:
         tags: The tags of the ticket.
     """
 
-    ticket_id: str
-    comment: Dict[str, Any]
+    comment: str
+    ticket_id: Optional[str] = None
     metadata: Optional[Dict[str, Any]] = None
     requester: Optional[Dict[str, Any]] = None
     satisfaction_rating: Optional[Dict[str, Any]] = None

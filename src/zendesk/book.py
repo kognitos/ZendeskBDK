@@ -20,7 +20,7 @@ from zenpy.lib.api_objects import Comment, Ticket  # type: ignore
 from zenpy.lib.exception import RecordNotFoundException  # type: ignore
 from zendesk.concepts.zendesk_concepts import ZendeskTicket
 
-DEFAULT_TIMEOUT = 30
+DEFAULT_TIMEOUT = 30000
 
 # metadata = {
 #     "comment": FieldProperties("comment", dict, []),
@@ -375,7 +375,7 @@ def delete_ticket(zendesk_client: zenpy.Zenpy, ticket_id: str):
 
     zendesk_client.tickets.delete(ticket)
 
-    return {"message": "Ticket deleted successfully"}
+    return "Ticket deleted successfully"
 
 
 def attach_file(zendesk_client: zenpy.Zenpy, ticket_id: str, file, comment=""):
@@ -526,6 +526,7 @@ class ZendeskBook:
         payload = {}
         if not ticket.comment:
             raise ValueError("Comment is required")
+        ticket.comment = {"body": ticket.comment}
         for field in fields(ticket):
             payload[field.name] = getattr(ticket, field.name)
 
@@ -651,8 +652,8 @@ class ZendeskBook:
         """
 
         record = delete_ticket(self._zendesk_proxy.client, ticket_id=ticket_id)
-        assert record.get("message") == "Ticket deleted successfully"
-
+        return record
+    
     @procedure("to get a (ticket) in zendesk")
     def to_get_a_ticket_in_zendesk(self, ticket_id: str):
         """

@@ -29,7 +29,7 @@ def test_create_ticket(connected_zendesk_book):
     logging.debug("Creating a new ticket")
     ticket = ZendeskTicket(
         ticket_id="11",
-        comment={"body": "This is a test ticket"},
+        comment="This is a test ticket",
     )
     result = connected_zendesk_book.to_create_a_ticket_in_zendesk(
         ticket,
@@ -40,8 +40,8 @@ def test_create_ticket(connected_zendesk_book):
 def test_update_ticket(connected_zendesk_book):
     logging.debug("Updating a ticket")
     ticket = ZendeskTicket(
-        ticket_id="17",
-        comment={"body": "This is a updated ticket"},
+        ticket_id="24",
+        comment="This is a updated ticket",
     )
     result = connected_zendesk_book.to_update_a_ticket_in_zendesk(
         ticket,
